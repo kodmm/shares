@@ -15,14 +15,7 @@ const Home: NextPage = () => {
     }
     const requestSearch = () => {
         const query = searched.trim();
-        // fetch(`http://127.0.0.1:3001/api/v1/tv/search?query=${query}`, {
-        //     method: 'GET'
-        // })
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        // })
+        
         Router.push({
             pathname: '/search',
             query: {query: query}
