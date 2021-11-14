@@ -3,7 +3,7 @@ import type { GetServerSideProps } from 'next';
 import type { IResSearchTv } from '../../types/searches/Tv';
 import { useRouter } from 'next/router';
 import { Container } from '@mui/material';
-import styles from '../styles/Search.module.css'
+import styles from '../../styles/Search.module.css'
 const Search: NextPage = ({ data }: any) => {
     const router = useRouter();
     const searchTvs: IResSearchTv = data;
@@ -30,7 +30,9 @@ const Search: NextPage = ({ data }: any) => {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
             ))}
             </section>
         </div>
