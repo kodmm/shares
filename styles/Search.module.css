@@ -17,8 +17,8 @@
     flex-wrap: wrap;
     border-radius: 4px;
     box-shadow: 0px 2px 1px;
-    padding: 0px 16px 16px 16px;
-    overflow: hidden;
+    padding: 0px 16px 16px 0px;
+    margin-bottom: 32px;
 }
 .card {
     width: 100%;
