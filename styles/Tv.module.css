@@ -1,0 +1,16 @@
+.tvInfo {
+    
+}
+.posterWrapper {
+}
+.poster {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+}
+.descriptionBox {
+    background-color: green;
+}
+.description {
+    background-color: aqua;
+}
