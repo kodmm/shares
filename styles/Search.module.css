@@ -37,6 +37,7 @@
 }
 
 .details {
+    /* flex-grow: 1; */
     width: 100%;
     padding-left: 16px;
     
