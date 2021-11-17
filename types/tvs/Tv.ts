@@ -152,7 +152,7 @@ export interface ICrew {
 }
 
 export interface ICredit {
-    cast: ICast;
-    crew: ICrew;
+    cast: ICast[];
+    crew: ICrew[];
     id: number;
 }
