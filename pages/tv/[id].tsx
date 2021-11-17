@@ -1,29 +1,121 @@
 import { Container, Grid } from '@mui/material';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 import type { GetServerSideProps, NextPage } from 'next';
-import type { ITv } from '../../types/tvs/Tv';
+import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
 const Tv: NextPage = ({ data }: any) => {
     const tv: ITv = data;
+    // const [crewSort, setCrewSort] = useState<ICrew[]>(tv.credits.crew);
+    
     console.log(data);
+    // const PriorityArtistSort = (aCrew: ICrew, bCrew: ICrew) => {
+    //     if (aCrew.department === "Sound") {
+    //         return 0
+    //     } else if (aCrew.department == "Sound") {
+    //         return -1
+    //     } else if (bCrew.department == "Sound") {
+    //         return 1
+    //     } else {
+    //         return 0
+    //     }
+    // }
+
+ 
+    // setCrewSort(crewSort.sort(PriorityArtistSort));
+    // console.log(crewSort);
     return(
-        <Container>
-            <Grid container>
+        <div>
+            <div className={styles.tvInfoBox}>
                 <section className={styles.tvInfo}>
-                    <Grid item md={7}>
-                        <div className={styles.poster}>
-                            <img src={tv.baseUrl + tv.resDetail.poster_path} alt={tv.resDetail.name} className={styles.poster}/>
+                    <div className={styles.posterWrapper}>
+                        <div className={styles.posterBox}>
+                            <div className={styles.poster}>
+                                <img src={tv.baseUrl + tv.resDetail.poster_path} alt={tv.resDetail.name} className={styles.poster}/>
+                            </div>
                         </div>
-                    </Grid>
-                    <Grid item md={5}>
+                    </div>
+                    <div className={styles.descriptionWrapper}>
                         <div className={styles.descriptionBox}>
                             <section className={styles.description}>
-                                <h3>{tv.resDetail.name}</h3>
+                                <div className={styles.titleBox}>
+                                    <h2 className={styles.title}>{tv.resDetail.name}</h2>
+                                </div>
+                                <div className={styles.genres}>
+                                <Stack direction="row" spacing={1}>
+                                    {tv.resDetail.genres.map(genre => (
+                                        <Chip 
+                                            label={genre.name}
+                                            variant="outlined" 
+                                            // onClick={() => console.log("test")} 
+                                            key={genre.id}
+                                        />
+                                    ))}
+                                </Stack>
+                                </div>
+                                <div className={styles.overviewBox}>
+                                    <h3 className={styles.overviewHeader}>概要</h3>
+                                    <p className={styles.p}>{tv.resDetail.overview}</p>
+                                    
+                                </div>
                             </section>
                         </div>
-                    </Grid>
+                    </div>
                 </section>
-            </Grid>
-        </Container>
+            </div>
+            <div className={styles.creditsBox}>
+                <div className={styles.castsWrapper}>
+                    <div className={styles.castsBox}>
+                        <h3>出演者</h3>
+                        <div >
+                            <ul className={styles.casts}>
+                                {tv.credits.cast.map(cast => (
+                                    <li className={styles.card} key={cast.id}>
+                                        <div className={styles.imageBox}>
+                                            <img src={tv.baseUrl + cast.profile_path} 
+                                                loading="lazy" 
+                                                alt={cast.original_name} 
+                                                className={styles.image}
+                                            />
+                                        </div>
+                                        <div className={styles.text}>
+                                            <b>{cast.name}</b>
+                                            <p className={styles.character}>{cast.character}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.crewWrapper}>
+                    <div className={styles.crewBox}>
+                        <h3>スタッフ</h3>
+                        <div >
+                            <ul className={styles.casts}>
+                                {tv.credits.crew.map(crew => (
+                                    <li className={styles.card} key={crew.id}>
+                                        <div className={styles.imageBox}>
+                                            <img src={tv.baseUrl + crew.profile_path} 
+                                                loading="lazy" 
+                                                alt={crew.original_name} 
+                                                className={styles.image}
+                                            />
+                                        </div>
+                                        <div className={styles.text}>
+                                            <p className={styles.character}>{crew.department}</p>
+                                            <b>{crew.name}</b>
+                                           
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     );
 }
 
