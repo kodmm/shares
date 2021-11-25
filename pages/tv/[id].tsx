@@ -1,11 +1,15 @@
 import { Container, Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import type { GetServerSideProps, NextPage } from 'next';
 import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
+import { io } from 'socket.io-client';
 const Tv: NextPage = ({ data }: any) => {
-    const tv: ITv = data;
+    // const tv: ITv = data;
+    const [tv, setTv] = useState<ITv>(data);
+    const chatSocket = io("http://localhost:3001/chat")
     // const [crewSort, setCrewSort] = useState<ICrew[]>(tv.credits.crew);
     
     console.log(data);
@@ -24,6 +28,35 @@ const Tv: NextPage = ({ data }: any) => {
  
     // setCrewSort(crewSort.sort(PriorityArtistSort));
     // console.log(crewSort);
+
+    const startChat = () => {
+        setIsChat(true);
+        setIsChatName("Close chat");
+        chatSocket.emit("client_to_server_join", {room: tv.resDetail.id.toString()});
+    }
+    const closeChat = () => {
+        setIsChat(false);
+        setIsChatName("Start chat");
+        chatSocket.close()
+    }
+
+    const changeChatStatus = () => {
+        isChat ? closeChat(): startChat();
+    }
+
+    const [isChat, setIsChat] = useState<boolean>(false);
+    const [isChatName, setIsChatName] = useState<string>("start chat");
+    
+    useEffect(() => {
+        chatSocket.on("connect", () => {
+            console.log("connetted client");
+        });
+        return () => {
+            chatSocket.close();
+        }
+    },[]);
+   
+
     return(
         <div>
             <div className={styles.tvInfoBox}>
@@ -114,6 +147,32 @@ const Tv: NextPage = ({ data }: any) => {
                     </div>
                 </div>
             </div>
+            <div>
+                <button onClick={() => changeChatStatus()}>{isChatName}</button>
+            </div>
+            <section className={styles.chatWrapper}>
+                <div className={styles.chatBox}>
+                    <div className={styles.chat}>
+                        <ul className={styles.messages}>
+                            <li className={styles.messageBox}>
+                                <div className={styles.message}>
+                                    <div className={styles.iconBox}>
+                                        <div className={styles.icon}>
+                                        </div>
+                                    </div>
+                                    <div className={styles.textBox}>
+                                        <p className={styles.text}>test</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={styles.textForm}>
+                        <input type="text" placeholder="コメントを投稿" className={styles.textField}/>
+                        <button>送信</button>
+                    </div>
+                </div>
+            </section>
             
         </div>
     );
