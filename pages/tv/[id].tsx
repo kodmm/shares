@@ -11,7 +11,8 @@ const Tv: NextPage = ({ data }: any) => {
     const [tv, setTv] = useState<ITv>(data);
     const chatSocket = io("http://localhost:3001/chat")
     // const [crewSort, setCrewSort] = useState<ICrew[]>(tv.credits.crew);
-    
+    const [message, setMessage] = useState<string>("");
+    const [messages, setMessages] = useState<Array<string>>([]);
     console.log(data);
     // const PriorityArtistSort = (aCrew: ICrew, bCrew: ICrew) => {
     //     if (aCrew.department === "Sound") {
@@ -44,6 +45,22 @@ const Tv: NextPage = ({ data }: any) => {
         isChat ? closeChat(): startChat();
     }
 
+    const changeMessage = (event: any) => {
+        const value: string = event.target.value;
+        setMessage(value);
+    }
+
+    const submitMessage = () => {
+        setMessage(message.trim());
+        chatSocket.emit("client_to_server", {message: message});
+        setMessage("");
+    }
+
+    chatSocket.on("server_to_client", (data: {message: string}) => {
+        console.log("AAA")
+        setMessages((messages) => [...messages, data.message]);
+    });
+    console.log(messages);
     const [isChat, setIsChat] = useState<boolean>(false);
     const [isChatName, setIsChatName] = useState<string>("start chat");
     
@@ -154,22 +171,31 @@ const Tv: NextPage = ({ data }: any) => {
                 <div className={styles.chatBox}>
                     <div className={styles.chat}>
                         <ul className={styles.messages}>
-                            <li className={styles.messageBox}>
-                                <div className={styles.message}>
-                                    <div className={styles.iconBox}>
-                                        <div className={styles.icon}>
+                            {messages.map((message, idx) => (
+                                <li className={styles.messageBox} key={idx}>
+                                    <div className={styles.message}>
+                                        <div className={styles.iconBox}>
+                                            <div className={styles.icon}>
+                                            </div>
+                                        </div>
+                                        <div className={styles.textBox}>
+                                            <p className={styles.text}>{message}</p>
                                         </div>
                                     </div>
-                                    <div className={styles.textBox}>
-                                        <p className={styles.text}>test</p>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            ))}
+                            
                         </ul>
                     </div>
                     <div className={styles.textForm}>
-                        <input type="text" placeholder="コメントを投稿" className={styles.textField}/>
-                        <button>送信</button>
+                        <textarea 
+                            placeholder="コメントを投稿" 
+                            className={styles.textField}
+                            value={message}
+                            onChange={(event) => changeMessage(event)}
+
+                        />
+                        <button className={styles.submitButton} onClick={() => submitMessage()}>送信</button>
                     </div>
                 </div>
             </section>

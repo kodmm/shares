@@ -100,7 +100,7 @@
 }
 .chat {
     width: 100%;
-    height: 100%;
+    height: 90%;
     background-color: antiquewhite;
 }
 .messages {
@@ -126,12 +126,18 @@
 
 .textForm {
     width: 100%;
+    height: 10%;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-items: flex-start;
+    padding: 4px 0;
 }
 .textField {
     width: 70%;
+    height: 100%;
 
+}
+.submitButton {
+    height: 100%;
 }
