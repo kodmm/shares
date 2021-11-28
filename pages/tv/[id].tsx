@@ -2,6 +2,8 @@ import { Container, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import type { GetServerSideProps, NextPage } from 'next';
 import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
@@ -14,21 +16,6 @@ const Tv: NextPage = ({ data }: any) => {
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<Array<string>>([]);
     console.log(data);
-    // const PriorityArtistSort = (aCrew: ICrew, bCrew: ICrew) => {
-    //     if (aCrew.department === "Sound") {
-    //         return 0
-    //     } else if (aCrew.department == "Sound") {
-    //         return -1
-    //     } else if (bCrew.department == "Sound") {
-    //         return 1
-    //     } else {
-    //         return 0
-    //     }
-    // }
-
- 
-    // setCrewSort(crewSort.sort(PriorityArtistSort));
-    // console.log(crewSort);
 
     const startChat = () => {
         setIsChat(true);
@@ -58,7 +45,7 @@ const Tv: NextPage = ({ data }: any) => {
 
     chatSocket.on("server_to_client", (data: {message: string}) => {
         console.log("AAA")
-        setMessages((messages) => [...messages, data.message]);
+        setMessages((messages) => [data.message, ...messages]);
     });
     console.log(messages);
     const [isChat, setIsChat] = useState<boolean>(false);
@@ -116,8 +103,8 @@ const Tv: NextPage = ({ data }: any) => {
             <div className={styles.creditsBox}>
                 <div className={styles.castsWrapper}>
                     <div className={styles.castsBox}>
-                        <h3>出演者</h3>
-                        <div >
+                        <h3 className={styles.subtitle}>出演者</h3>
+                        <div className={styles.scrollBox}>
                             <ul className={styles.casts}>
                                 {tv.credits.cast.map(cast => (
                                     <li className={styles.card} key={cast.id}>
@@ -138,11 +125,12 @@ const Tv: NextPage = ({ data }: any) => {
                         </div>
                     </div>
                 </div>
+                <div className={styles.spacerMin} />
                 <div className={styles.crewWrapper}>
                     <div className={styles.crewBox}>
-                        <h3>スタッフ</h3>
-                        <div >
-                            <ul className={styles.casts}>
+                        <h3 className={styles.subtitle}>スタッフ</h3>
+                        <div className={styles.scrollBox}>
+                            <ul className={styles.crew}>
                                 {tv.credits.crew.map(crew => (
                                     <li className={styles.card} key={crew.id}>
                                         <div className={styles.imageBox}>
@@ -169,17 +157,35 @@ const Tv: NextPage = ({ data }: any) => {
             </div>
             <section className={styles.chatWrapper}>
                 <div className={styles.chatBox}>
+                    <div className={styles.textForm}>
+                        <TextField 
+                            id="standard-basic" 
+                            label="Chat Message" 
+                            variant="standard" 
+                            className={styles.textField}
+                            value={message}
+                            onChange={(event) => changeMessage(event)}
+
+                        />
+                        <Button 
+                            variant="contained" 
+                            color="success"
+                            className={styles.submitButton} 
+                            onClick={() => submitMessage()}
+                        >コメント
+                        </Button>
+                    </div>
                     <div className={styles.chat}>
                         <ul className={styles.messages}>
-                            {messages.map((message, idx) => (
+                            {messages.map((message, idx)=> (
                                 <li className={styles.messageBox} key={idx}>
                                     <div className={styles.message}>
                                         <div className={styles.iconBox}>
                                             <div className={styles.icon}>
                                             </div>
                                         </div>
-                                        <div className={styles.textBox}>
-                                            <p className={styles.text}>{message}</p>
+                                        <div className={styles.commentBox}>
+                                            <p className={styles.comment}>{message}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -187,16 +193,7 @@ const Tv: NextPage = ({ data }: any) => {
                             
                         </ul>
                     </div>
-                    <div className={styles.textForm}>
-                        <textarea 
-                            placeholder="コメントを投稿" 
-                            className={styles.textField}
-                            value={message}
-                            onChange={(event) => changeMessage(event)}
-
-                        />
-                        <button className={styles.submitButton} onClick={() => submitMessage()}>送信</button>
-                    </div>
+                    
                 </div>
             </section>
             
