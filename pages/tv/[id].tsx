@@ -10,6 +10,7 @@ import styles from '../../styles/Tv.module.css';
 import { io } from 'socket.io-client';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from 'swiper';
+import Image from 'next/image';
 import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/navigation"
@@ -83,10 +84,13 @@ const Tv: NextPage = ({ data }: any) => {
                                     "clickable": true }} navigation={true}>
                                         {tv.resDetail.images.posters.map((image, idx) => (
                                             <SwiperSlide key={idx}>
-                                                <img 
+                                                <Image 
                                                     src={tv.baseUrl + image.file_path} 
                                                     alt={tv.resDetail.name} 
                                                     className={styles.poster}
+                                                  
+                                                    width={300}
+                                                    height={450}
                                                 />
                                             </SwiperSlide>
                                         ))}
@@ -131,10 +135,12 @@ const Tv: NextPage = ({ data }: any) => {
                                 {tv.credits.cast.map(cast => (
                                     <li className={styles.card} key={cast.id}>
                                         <div className={styles.imageBox}>
-                                            <img src={tv.baseUrl + cast.profile_path} 
-                                                loading="lazy" 
+                                            <Image src={tv.baseUrl + cast.profile_path} 
                                                 alt={cast.original_name} 
                                                 className={styles.image}
+                                                
+                                                width={140}
+                                                height={180}
                                             />
                                         </div>
                                         <div className={styles.text}>
@@ -156,10 +162,12 @@ const Tv: NextPage = ({ data }: any) => {
                                 {tv.credits.crew.map(crew => (
                                     <li className={styles.card} key={crew.id}>
                                         <div className={styles.imageBox}>
-                                            <img src={tv.baseUrl + crew.profile_path} 
-                                                loading="lazy" 
+                                            <Image src={tv.baseUrl + crew.profile_path} 
                                                 alt={crew.original_name} 
                                                 className={styles.image}
+                                                
+                                                width={140}
+                                                height={180}
                                             />
                                         </div>
                                         <div className={styles.text}>
@@ -180,13 +188,15 @@ const Tv: NextPage = ({ data }: any) => {
                         <div className={styles.scrollBox}>
                             <ul className={styles.backdrops}>
                                 {tv.resDetail.images.backdrops.map((image, idx) => (
-                                    <li className={styles.backdropBox}>
+                                    <li className={styles.backdropBox} key={idx}>
                                         <div className={styles.backdrop}>
-                                            <img 
-                                                loading="lazy"
+                                            <Image 
                                                 src={tv.baseUrl + image.file_path} 
                                                 alt={tv.resDetail.name} 
                                                 className={styles.poster}
+                                                
+                                                width={500}
+                                                height={300}
                                             />
                                         </div>
                                     </li>
