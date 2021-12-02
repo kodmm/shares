@@ -114,11 +114,30 @@ export interface IVideo {
 }
 
 export interface IImage {
-    backdrops: string[];
+    backdrops: IBackdrop[];
     logos: string[];
-    posters: string[];
+    posters: IPoster[];
 }
 
+export interface IPoster {
+    aspect_ratio: number
+    height: number
+    iso_639_1: string
+    file_path: string
+    vote_average: number
+    vote_count:number
+    width: number
+}
+
+export interface IBackdrop {
+    aspect_ratio: number
+    height: number
+    iso_639_1: string
+    file_path: string
+    vote_average: number
+    vote_count:number
+    width: number
+}
 export interface ICast {
     adult: boolean;
     gender: number;
