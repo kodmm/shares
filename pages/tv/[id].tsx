@@ -8,6 +8,14 @@ import type { GetServerSideProps, NextPage } from 'next';
 import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
 import { io } from 'socket.io-client';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation } from 'swiper';
+import "swiper/css"
+import "swiper/css/pagination"
+import "swiper/css/navigation"
+
+SwiperCore.use([Pagination, Navigation]);
+
 const Tv: NextPage = ({ data }: any) => {
     // const tv: ITv = data;
     const [tv, setTv] = useState<ITv>(data);
@@ -15,6 +23,7 @@ const Tv: NextPage = ({ data }: any) => {
     // const [crewSort, setCrewSort] = useState<ICrew[]>(tv.credits.crew);
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<Array<string>>([]);
+
     console.log(data);
 
     const startChat = () => {
@@ -61,6 +70,8 @@ const Tv: NextPage = ({ data }: any) => {
     },[]);
    
 
+
+
     return(
         <div>
             <div className={styles.tvInfoBox}>
@@ -68,7 +79,18 @@ const Tv: NextPage = ({ data }: any) => {
                     <div className={styles.posterWrapper}>
                         <div className={styles.posterBox}>
                             <div className={styles.poster}>
-                                <img src={tv.baseUrl + tv.resDetail.poster_path} alt={tv.resDetail.name} className={styles.poster}/>
+                                <Swiper slidesPerView={1} spaceBetween={30} loop={true} pagination={{
+                                    "clickable": true }} navigation={true}>
+                                        {tv.resDetail.images.posters.map((image, idx) => (
+                                            <SwiperSlide key={idx}>
+                                                <img 
+                                                    src={tv.baseUrl + image.file_path} 
+                                                    alt={tv.resDetail.name} 
+                                                    className={styles.poster}
+                                                />
+                                            </SwiperSlide>
+                                        ))}
+                                </Swiper>
                             </div>
                         </div>
                     </div>
@@ -152,6 +174,28 @@ const Tv: NextPage = ({ data }: any) => {
                     </div>
                 </div>
             </div>
+            <section className={styles.backdropsWrap}>
+                <div className={styles.backdropsBox}>
+                        <h3 className={styles.subtitle}>背景画像</h3>
+                        <div className={styles.scrollBox}>
+                            <ul className={styles.backdrops}>
+                                {tv.resDetail.images.backdrops.map((image, idx) => (
+                                    <li className={styles.backdropBox}>
+                                        <div className={styles.backdrop}>
+                                            <img 
+                                                loading="lazy"
+                                                src={tv.baseUrl + image.file_path} 
+                                                alt={tv.resDetail.name} 
+                                                className={styles.poster}
+                                            />
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                </div> 
+            </section>
+            
             <div>
                 <button onClick={() => changeChatStatus()}>{isChatName}</button>
             </div>
