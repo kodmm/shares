@@ -1,15 +1,19 @@
 import React from 'react';
-import type { ITv, ICrew } from '../../types/tvs/Tv';
-import Image from 'next/image';
-import type { NextPage } from 'next';
-import { Swiper, SwiperSlide } from "swiper/react";
+import type { ITv } from '../../types/tvs/Tv';
 import Chip from '@mui/material/Chip';
+import Image from 'next/image';
+
+
 import Stack from '@mui/material/Stack';
-import SwiperCore, { Pagination, Navigation } from 'swiper';
 import styles from '../../styles/Tvinfo.module.css';
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation } from 'swiper';
 import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/navigation"
+
+SwiperCore.use([Pagination, Navigation]);
 
 type Props = {
     tv: ITv;
