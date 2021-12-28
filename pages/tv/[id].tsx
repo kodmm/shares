@@ -1,20 +1,15 @@
-import { Container, Grid } from '@mui/material';
+
 import { useEffect, useState } from 'react';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import type { GetServerSideProps, NextPage } from 'next';
 import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
 import { io } from 'socket.io-client';
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from 'swiper';
 import Image from 'next/image';
-import "swiper/css"
-import "swiper/css/pagination"
-import "swiper/css/navigation"
-
+import { TvInfo } from '../../components/organisms/tvinfo'
 SwiperCore.use([Pagination, Navigation]);
 
 const Tv: NextPage = ({ data }: any) => {
@@ -75,56 +70,8 @@ const Tv: NextPage = ({ data }: any) => {
 
     return(
         <div>
-            <div className={styles.tvInfoBox}>
-                <section className={styles.tvInfo}>
-                    <div className={styles.posterWrapper}>
-                        <div className={styles.posterBox}>
-                            <div className={styles.poster}>
-                                <Swiper slidesPerView={1} spaceBetween={30} loop={true} pagination={{
-                                    "clickable": true }} navigation={true}>
-                                        {tv.resDetail.images.posters.map((image, idx) => (
-                                            <SwiperSlide key={idx}>
-                                                <Image 
-                                                    src={tv.baseUrl + image.file_path} 
-                                                    alt={tv.resDetail.name} 
-                                                    className={styles.poster}
-                                                  
-                                                    width={300}
-                                                    height={450}
-                                                />
-                                            </SwiperSlide>
-                                        ))}
-                                </Swiper>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.descriptionWrapper}>
-                        <div className={styles.descriptionBox}>
-                            <section className={styles.description}>
-                                <div className={styles.titleBox}>
-                                    <h2 className={styles.title}>{tv.resDetail.name}</h2>
-                                </div>
-                                <div className={styles.genres}>
-                                <Stack direction="row" spacing={1}>
-                                    {tv.resDetail.genres.map(genre => (
-                                        <Chip 
-                                            label={genre.name}
-                                            variant="outlined" 
-                                            // onClick={() => console.log("test")} 
-                                            key={genre.id}
-                                        />
-                                    ))}
-                                </Stack>
-                                </div>
-                                <div className={styles.overviewBox}>
-                                    <h3 className={styles.overviewHeader}>概要</h3>
-                                    <p className={styles.p}>{tv.resDetail.overview}</p>
-                                    
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </section>
+            <div className={styles.tvinfo_box}>
+                <TvInfo tv={tv} />
             </div>
             <div className={styles.creditsBox}>
                 <div className={styles.castsWrapper}>
