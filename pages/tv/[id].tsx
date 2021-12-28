@@ -9,7 +9,9 @@ import styles from '../../styles/Tv.module.css';
 import { io } from 'socket.io-client';
 import SwiperCore, { Pagination, Navigation } from 'swiper';
 import Image from 'next/image';
-import { TvInfo } from '../../components/organisms/tvinfo'
+import { TvInfo } from '../../components/organisms/tvinfo';
+import { Casts } from '../../components/organisms/casts';
+import { Crews } from '../../components/organisms/crews';
 SwiperCore.use([Pagination, Navigation]);
 
 const Tv: NextPage = ({ data }: any) => {
@@ -73,60 +75,13 @@ const Tv: NextPage = ({ data }: any) => {
             <div className={styles.tvinfo_box}>
                 <TvInfo tv={tv} />
             </div>
-            <div className={styles.creditsBox}>
+            <div className={styles.credits_box}>
                 <div className={styles.castsWrapper}>
-                    <div className={styles.castsBox}>
-                        <h3 className={styles.subtitle}>出演者</h3>
-                        <div className={styles.scrollBox}>
-                            <ul className={styles.casts}>
-                                {tv.credits.cast.map(cast => (
-                                    <li className={styles.card} key={cast.id}>
-                                        <div className={styles.imageBox}>
-                                            <Image src={tv.baseUrl + cast.profile_path} 
-                                                alt={cast.original_name} 
-                                                className={styles.image}
-                                                
-                                                width={140}
-                                                height={180}
-                                            />
-                                        </div>
-                                        <div className={styles.text}>
-                                            <b>{cast.name}</b>
-                                            <p className={styles.character}>{cast.character}</p>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                    <Casts tv={tv} />
                 </div>
-                <div className={styles.spacerMin} />
-                <div className={styles.crewWrapper}>
-                    <div className={styles.crewBox}>
-                        <h3 className={styles.subtitle}>スタッフ</h3>
-                        <div className={styles.scrollBox}>
-                            <ul className={styles.crew}>
-                                {tv.credits.crew.map(crew => (
-                                    <li className={styles.card} key={crew.id}>
-                                        <div className={styles.imageBox}>
-                                            <Image src={tv.baseUrl + crew.profile_path} 
-                                                alt={crew.original_name} 
-                                                className={styles.image}
-                                                
-                                                width={140}
-                                                height={180}
-                                            />
-                                        </div>
-                                        <div className={styles.text}>
-                                            <p className={styles.character}>{crew.department}</p>
-                                            <b>{crew.name}</b>
-                                           
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                <div className={styles.spacer_min} />
+                <div className={styles.crews_wrapper}>
+                    <Crews tv={tv} />
                 </div>
             </div>
             <section className={styles.backdropsWrap}>

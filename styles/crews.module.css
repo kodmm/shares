@@ -1,0 +1,54 @@
+.crews {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-left: 0;
+}
+
+.subtitle {
+    width: 99%;
+    border-bottom: 2px solid; 
+}
+
+.scrollBox {
+    position: relative;
+}
+.scrollBox::after{
+    content: "";
+    top: 0;
+    right: 0;
+    width: 56px;
+    height: 100%;
+    position: absolute;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 100%);
+
+}
+
+.card {
+    box-shadow: 0px 1px 2px;
+    list-style-type: none;
+    margin: 10px 10px 10px 5px;
+    border-radius: 8px;
+
+}
+.imageBox {
+    width: 140px;
+    height: 180px;
+    border-radius: inherit;
+}
+.image {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+}
+
+.text {
+    padding: 14px 8px 8px;
+}
+.character {
+    margin: 0;
+    padding-top: 8px;
+}
