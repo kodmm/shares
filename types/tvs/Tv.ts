@@ -1,6 +1,7 @@
 export interface ITv {
     resDetail: IDetail;
-    credits: ICredit
+    credits: ICredit;
+    streaming: IStreamingServiceData;
     baseUrl: string;
 }
 
@@ -174,4 +175,18 @@ export interface ICredit {
     cast: ICast[];
     crew: ICrew[];
     id: number;
+}
+
+export interface IStreamingServiceData {
+    link: string;
+    rent: IStreamingServiceDetail[];
+    flatrate: IStreamingServiceDetail[];
+    buy: IStreamingServiceDetail[];
+}
+
+export interface IStreamingServiceDetail {
+    display_priority: number;
+    logo_path: string;
+    provider_id: number;
+    provider_name: string;
 }
