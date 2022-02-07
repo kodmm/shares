@@ -136,7 +136,7 @@ export const TvInfo: React.FC<Props> = ({ tv }) => {
                         </div>
                         <div className={styles.streaming_wrapper}>
                             <h3 className={styles.streaming_header}>ストリーミングサービス</h3>      
-                            {tv.hasOwnProperty('streaming')?
+                            {"streaming" in tv?
                                     <div className={styles.streaming_package}>
                                         <div className={styles.flatrate}>
                                             <h4 className={styles.streaming_title}>サブスクリプション</h4>
