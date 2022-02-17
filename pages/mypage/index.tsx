@@ -4,11 +4,14 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import type { NextRouter } from 'next/router';
 import type { IAuth } from '../../types/auths/auth';
-import { AnyPtrRecord } from 'dns';
-
-const MyPage: NextPage = () => {
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { userState } from '../../recoil/atoms/userState';
+import { getUserState } from '../../recoil/selectors/userSelector';
+const MyPage: NextPage = ({ data }: any) => {
     const router: NextRouter = useRouter();
-
+    const setUser = useSetRecoilState(userState);
+    const user = useRecoilValue(getUserState);
+    
     const logout = async() => {
         const data: IAuth = await fetch("http://localhost:3001/api/v1/auth/logout", {
             mode: 'cors',
@@ -21,6 +24,12 @@ const MyPage: NextPage = () => {
 
         data.data.isAuth? null: router.push('/')
     }
+
+    console.log(user)
+    
+    useEffect(() => {
+        setUser(data)
+    },[])
 
     return(
         <div>
