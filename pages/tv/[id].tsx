@@ -17,10 +17,10 @@ const Tv: NextPage = ({ data }: any) => {
 
     return(
         <div>
-            <div className={styles.tvinfo_box}>
+            <section className={styles.tvinfo_box}>
                 <TvInfo tv={tv} />
-            </div>
-            <div className={styles.credits_box}>
+            </section>
+            <section className={styles.credits_box}>
                 <div className={styles.castsWrapper}>
                     <Casts tv={tv} />
                 </div>
@@ -28,7 +28,7 @@ const Tv: NextPage = ({ data }: any) => {
                 <div className={styles.crews_wrapper}>
                     <Crews tv={tv} />
                 </div>
-            </div>
+            </section>
             <section className={styles.backdrops_wrap}>
                 <Backdrops tv={tv} />
             </section>
