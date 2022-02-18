@@ -17,7 +17,7 @@ export const userState = atom<UserState>({
         id: '',
         email: '',
         displayName: '',
-        photo: '',
+        photo: '/favicon.ico',
         provider: '',
         accessToken: '',
         refreshToken: '',
