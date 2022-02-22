@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
@@ -8,32 +8,37 @@ import { Casts } from '../../components/organisms/casts';
 import { Crews } from '../../components/organisms/crews';
 import { Backdrops } from '../../components/organisms/backdrops';
 import { Chats } from '../../components/organisms/chats';
-
+import { useSetRecoilState } from 'recoil';
+import { tvState } from '../../recoil/atoms/tvState';
 
 const Tv: NextPage = ({ data }: any) => {
     // const tv: ITv = data;
-    const [tv, setTv] = useState<ITv>(data);
+    const setTv = useSetRecoilState(tvState)
     // const [crewSort, setCrewSort] = useState<ICrew[]>(tv.credits.crew);
+
+    useEffect(() => {
+        setTv(data)
+    },[])
 
     return(
         <div>
             <section className={styles.tvinfo_box}>
-                <TvInfo tv={tv} />
+                <TvInfo />
             </section>
             <section className={styles.credits_box}>
                 <div className={styles.castsWrapper}>
-                    <Casts tv={tv} />
+                    <Casts />
                 </div>
                 <div className={styles.spacer_min} />
                 <div className={styles.crews_wrapper}>
-                    <Crews tv={tv} />
+                    <Crews />
                 </div>
             </section>
             <section className={styles.backdrops_wrap}>
-                <Backdrops tv={tv} />
+                <Backdrops />
             </section>
             
-            <Chats tv={tv} />
+            <Chats />
         </div>
     );
 }
