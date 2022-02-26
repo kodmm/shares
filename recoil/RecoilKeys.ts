@@ -1,6 +1,7 @@
 export const RecoilAtomKeys = {
     USER_STATE: 'userState',
     TV_STATE: 'tvState',
+    TV_STREAMING_STATE: 'tvStreamingState',
     WATCH_WATCH_STATE: 'watchWatchState',
 } as const
 
