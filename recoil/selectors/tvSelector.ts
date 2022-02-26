@@ -1,5 +1,6 @@
 import { selector } from 'recoil'
 import { tvState } from '../atoms/tvState'
+import { tvStreamingState } from '../atoms/tvStreamingState'
 import { RecoilSelectorKeys } from '../RecoilKeys'
 
 export const getTvImgBaseUrl = selector({
@@ -37,15 +38,8 @@ export const getTvCrewState = selector({
 export const getTvStreamingState = selector({
     key: RecoilSelectorKeys.TV_STREAMING,
     get: ({get}) => {
-        const tv = get(tvState)
-        return tv?.streaming
+        const streaming = get(tvStreamingState)
+        return streaming
     }
 })
 
-export const getTvBackdropState = selector({
-    key: RecoilSelectorKeys.TV_BACKDROP,
-    get: ({get}) => {
-        const tv = get(tvState)
-        return tv?.resDetail.backdrop_path
-    }
-})
