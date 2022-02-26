@@ -1,7 +1,7 @@
+import { IStreamingService } from '../../recoil/atoms/tvStreamingState'
 export interface ITv {
     resDetail: IDetail;
     credits: ICredit;
-    streaming: IStreamingServiceData;
     baseUrl: string;
 }
 
@@ -177,16 +177,7 @@ export interface ICredit {
     id: number;
 }
 
-export interface IStreamingServiceData {
-    link: string;
-    rent: IStreamingServiceDetail[];
-    flatrate: IStreamingServiceDetail[];
-    buy: IStreamingServiceDetail[];
-}
-
-export interface IStreamingServiceDetail {
-    display_priority: number;
-    logo_path: string;
-    provider_id: number;
-    provider_name: string;
+export interface IStreamingIsWatch {
+    streaming: IStreamingService,
+    isWatch: boolean | null,
 }
