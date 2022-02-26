@@ -14,7 +14,7 @@ const MyPage: NextPage = ({ data }: any) => {
     const setUser = useSetRecoilState(userState);
     const resetUser = useResetRecoilState(userState);
     const user = useRecoilValue(getUserState);
-    console.log(user)
+    
     const logout = async() => {
         const data: IAuth = await fetch("http://localhost:3001/api/v1/auth/logout", {
             mode: 'cors',
@@ -29,7 +29,6 @@ const MyPage: NextPage = ({ data }: any) => {
         data.data.isAuth? null: router.push('/')
     }
 
-    
     
 
     useEffect(() => {
