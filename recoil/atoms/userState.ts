@@ -1,4 +1,4 @@
-import { atom } from 'recoil'
+import { atom } from 'recoil';
 import { RecoilAtomKeys } from '../RecoilKeys';
 type UserState = {
     id: string
@@ -11,17 +11,7 @@ type UserState = {
     createdAt: string
     updatedAt: string
 }
-export const userState = atom<UserState>({
+export const userState = atom<UserState | null>({
     key: RecoilAtomKeys.USER_STATE,
-    default: {
-        id: '',
-        email: '',
-        displayName: '',
-        photo: '/favicon.ico',
-        provider: '',
-        accessToken: '',
-        refreshToken: '',
-        createdAt: '',
-        updatedAt: '',
-    }
+    default: null
 })
