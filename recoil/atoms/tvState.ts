@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
-import { ITv, IDetail, ICredit } from '../../types/tvs/Tv';
+import { ITv } from '../../types/tvs/Tv';
 import { RecoilAtomKeys } from '../RecoilKeys';
 
-export const tvState = atom<ITv | undefined>({
+export const tvState = atom<ITv | null>({
     key: RecoilAtomKeys.TV_STATE,
-    default: undefined,
+    default: null,
 })
