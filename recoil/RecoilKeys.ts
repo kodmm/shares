@@ -1,6 +1,7 @@
 export const RecoilAtomKeys = {
     USER_STATE: 'userState',
     TV_STATE: 'tvState',
+    WATCH_WATCH_STATE: 'watchWatchState',
 } as const
 
 type RecoilAtomKeys = typeof RecoilAtomKeys[keyof typeof RecoilAtomKeys]
