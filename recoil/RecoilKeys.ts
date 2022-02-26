@@ -16,3 +16,4 @@ export const RecoilSelectorKeys = {
 
 type RecoilSelectorKeys = typeof RecoilSelectorKeys[keyof typeof RecoilSelectorKeys]
 
+    TV_STREAMING_STATE: 'tvStreamingState',
