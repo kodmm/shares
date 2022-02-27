@@ -1,8 +1,14 @@
 import { atom } from 'recoil';
-import { ITv } from '../../types/tvs/Tv';
+import { initIDetail, initICredit, ITv } from '../../types/tvs/Tv';
 import { RecoilAtomKeys } from '../RecoilKeys';
 
-export const tvState = atom<ITv | null>({
+
+export const tvState = atom<ITv>({
     key: RecoilAtomKeys.TV_STATE,
-    default: null,
+    default: {
+        resDetail: initIDetail,
+        credits: initICredit,
+        baseUrl: 'https://image.tmdb.org/t/p',
+    }
 })
+
