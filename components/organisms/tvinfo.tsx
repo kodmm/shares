@@ -19,8 +19,9 @@ import { isWatchState } from '../../recoil/atoms/watchState';
 import { addWatch, destroyWatch } from '../../functions/watch';
 
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
 export const TvInfo: React.FC = () => {
     const tvDetail = useRecoilValue(getTvDetailState);
     const tvCasts = useRecoilValue(getTvCastState);
@@ -37,6 +38,10 @@ export const TvInfo: React.FC = () => {
     const onClickDestroyWatch = async() => {
         const watch: any = destroyWatch(Number(tvDetail.id));
         setIsWatchState(false)
+    }
+
+    const onClickCopyButton = () => {
+        navigator.clipboard.writeText(tvDetail.name)
     }
 
     const watchButton = () => {
@@ -202,7 +207,7 @@ export const TvInfo: React.FC = () => {
                         </div>
                         <div>
                             {watchButton()}
-                            
+                            <ContentCopyIcon onClick = {onClickCopyButton} />
                         </div>
                     </section>
                 </div>
