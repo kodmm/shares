@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetStaticPaths, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import styles from '../../styles/Tv.module.css';
 import { TvInfo } from '../../components/organisms/tvinfo';
 import { Casts } from '../../components/organisms/casts';
@@ -14,7 +15,10 @@ import { getTvDetailState } from '../../recoil/selectors/tvSelector';
 import { tvStreamingState } from '../../recoil/atoms/tvStreamingState';
 import { isWatchState } from '../../recoil/atoms/watchState';
 import { IStreamingIsWatch } from '../../types/tvs/Tv';
+import { Params } from '../../types/tvs/Params';
 const Tv: NextPage = ({ data }: any) => {
+    const router = useRouter();
+
     const tv = useRecoilValue(getTvDetailState);
     const setTv = useSetRecoilState(tvState);
     const setStreamingIsWatch = useSetRecoilState(tvStreamingState);
@@ -32,6 +36,10 @@ const Tv: NextPage = ({ data }: any) => {
     useEffect(() => {
         effectFunc()
     },[])
+
+    if(router.isFallback) {
+        return <div>Loading...</div>
+    }
 
     return(
         <div>
@@ -56,18 +64,22 @@ const Tv: NextPage = ({ data }: any) => {
     );
 }
 
+export const getStaticPaths: GetStaticPaths = async() => {
+    return {
+        paths: [{ params: { id: '95718'}}, { params: {id: '65143'}} ],
+        fallback: true
+    }
+}
 
-export const getServerSideProps: GetServerSideProps = async context => {
-    const params = context.params?.id as number | string;
-    let data: any;
-    await fetch(`http://10.0.0.1:3001/api/v1/tv/${params}`, {
+
+export const getStaticProps = async ({ params }: Params) => {
+    const { id } = params
+
+    const res: any = await fetch(`http://10.0.0.1:3001/api/v1/tv/${id}`, {
         method: 'GET'
         })
-        .then(response => data = response.json())
+    const data = await res.json()
     
-        .catch(error => {
-            console.error('Error:', error);
-        })
     return { props: data };
 }
 
