@@ -1,24 +1,25 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '../../styles/backdrops.module.css';
-import { ITv } from '../../types/tvs/Tv';
+import { useRecoilValue } from 'recoil';
+import { getTvDetailState, getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';
 
-type Props = {
-    tv: ITv;
-}
+export const Backdrops: React.FC = () => {
 
-export const Backdrops: React.FC<Props> = ({ tv }) => {
+    const tvDetail = useRecoilValue(getTvDetailState);
+    const tvImgBaseUrl = useRecoilValue(getTvImgBaseUrl)
+
     return (
         <div className={styles.backdrops_box}>
                 <h3 className={styles.subtitle}>背景画像</h3>
                 <div className={styles.scroll_box}>
                     <ul className={styles.backdrops}>
-                        {tv.resDetail.images.backdrops.map((image, idx) => (
+                        {tvDetail?.images.backdrops.map((image, idx) => (
                             <li className={styles.backdrop_box} key={idx}>
                                 <div className={styles.backdrop}>
                                     <Image 
-                                        src={tv.baseUrl + image.file_path} 
-                                        alt={tv.resDetail.name} 
+                                        src={tvImgBaseUrl + image.file_path} 
+                                        alt={tvDetail.name} 
                                         className={styles.poster}
                                         
                                         width={500}

@@ -5,13 +5,10 @@ import styles from '../../styles/chats.module.css';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { ITv } from '../../types/tvs/Tv';
+import { useRecoilValue } from 'recoil';
+import { getTvDetailState } from '../../recoil/selectors/tvSelector';
 
-type Props = {
-    tv: ITv;
-}
-
-export const Chats: React.FC<Props> = ({ tv }) => {
+export const Chats: React.FC = () => {
     const [isChat, setIsChat] = useState<boolean>(false);
     const [isChatName, setIsChatName] = useState<string>("start chat");
 
@@ -20,10 +17,13 @@ export const Chats: React.FC<Props> = ({ tv }) => {
 
     const chatSocket = io("http://localhost:3001/chat")
 
+    const tvDetail = useRecoilValue(getTvDetailState);
+
+
     const startChat = () => {
         setIsChat(true);
         setIsChatName("Close chat");
-        chatSocket.emit("client_to_server_join", {room: tv.resDetail.id.toString()});
+        chatSocket.emit("client_to_server_join", {room: tvDetail?.id.toString()});
     }
 
     const closeChat = () => {

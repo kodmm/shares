@@ -14,7 +14,7 @@ const MyPage: NextPage = ({ data }: any) => {
     const setUser = useSetRecoilState(userState);
     const resetUser = useResetRecoilState(userState);
     const user = useRecoilValue(getUserState);
-    console.log(user)
+    
     const logout = async() => {
         const data: IAuth = await fetch("http://localhost:3001/api/v1/auth/logout", {
             mode: 'cors',
@@ -30,11 +30,14 @@ const MyPage: NextPage = ({ data }: any) => {
     }
 
     
-    
 
     useEffect(() => {
-        setUser(data);
+        setUser(data.user);
     },[])
+
+    if (user === null) {
+        return null
+    }
 
     return(
         <div>
@@ -65,7 +68,7 @@ const MyPage: NextPage = ({ data }: any) => {
                 </div>
             </section>
             <p>Authenticated Successfully!!!</p>
-            <button onClick={() => logout()}>Log Out</button>
+            <button onClick={logout}>Log Out</button>
         </div>
     )
 }
@@ -91,7 +94,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
                                     console.error('Error:', error);
                                 })
 
-    console.log(data);
     return { props: data };
 }
 

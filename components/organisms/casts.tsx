@@ -1,22 +1,24 @@
 import React from 'react'
 import styles from '../../styles/casts.module.css'
 import Image from 'next/image';
-import { ITv } from '../../types/tvs/Tv';
-type Props = {
-    tv: ITv;
-}
+import { useRecoilValue } from 'recoil';
+import { getTvCastState, getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';
 
-export const Casts: React.FC<Props> = ({ tv }) => {
+
+export const Casts: React.FC = () => {
+
+    const tvCasts = useRecoilValue(getTvCastState);
+    const tvImgBaseUrl = useRecoilValue(getTvImgBaseUrl);
     return (
         <div className={styles.casts_box}>
             <h3 className={styles.subtitle}>出演者</h3>
             <div className={styles.scroll_box}>
                 <ul className={styles.casts}>
-                    {tv.credits.cast.map(cast => (
+                    {tvCasts?.map(cast => (
                         <li className={styles.card} key={cast.id}>
                             <div className={styles.image_box}>
                                 <Image 
-                                    src={tv.baseUrl + cast.profile_path} 
+                                    src={tvImgBaseUrl + cast.profile_path} 
                                     alt={cast.original_name} 
                                     className={styles.image}
                                     
