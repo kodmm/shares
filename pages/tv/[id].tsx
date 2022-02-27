@@ -1,23 +1,36 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import type { ITv, ICrew } from '../../types/tvs/Tv';
 import styles from '../../styles/Tv.module.css';
 import { TvInfo } from '../../components/organisms/tvinfo';
 import { Casts } from '../../components/organisms/casts';
 import { Crews } from '../../components/organisms/crews';
 import { Backdrops } from '../../components/organisms/backdrops';
 import { Chats } from '../../components/organisms/chats';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { tvState } from '../../recoil/atoms/tvState';
-
+import { getStreamingIsWatch } from '../../api/tv';
+import { getTvDetailState } from '../../recoil/selectors/tvSelector';
+import { tvStreamingState } from '../../recoil/atoms/tvStreamingState';
+import { isWatchState } from '../../recoil/atoms/watchState';
+import { IStreamingIsWatch } from '../../types/tvs/Tv';
 const Tv: NextPage = ({ data }: any) => {
-    // const tv: ITv = data;
-    const setTv = useSetRecoilState(tvState)
-    // const [crewSort, setCrewSort] = useState<ICrew[]>(tv.credits.crew);
+    const tv = useRecoilValue(getTvDetailState);
+    const setTv = useSetRecoilState(tvState);
+    const setStreamingIsWatch = useSetRecoilState(tvStreamingState);
+    const setIsWatchState = useSetRecoilState(isWatchState)
+    const { resDetail } = data;
+       
 
-    useEffect(() => {
+    const effectFunc = async() => {
         setTv(data)
+        const resData: IStreamingIsWatch | any = await getStreamingIsWatch(resDetail.id);
+        setStreamingIsWatch(resData.data.streaming)
+        setIsWatchState(resData.data.isWatch)
+
+    }
+    useEffect(() => {
+        effectFunc()
     },[])
 
     return(
