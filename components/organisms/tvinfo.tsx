@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
@@ -10,17 +10,54 @@ import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/navigation"
 
-import { useRecoilValue } from 'recoil';
-import { getTvDetailState, getTvImgBaseUrl, getTvStreamingState } from '../../recoil/selectors/tvSelector';
 
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { getTvDetailState, getTvImgBaseUrl, getTvStreamingState, getTvCastState } from '../../recoil/selectors/tvSelector';
 SwiperCore.use([Pagination, Navigation]);
 
+import { isWatchState } from '../../recoil/atoms/watchState';
+import { addWatch, destroyWatch } from '../../functions/watch';
 
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+
+import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 export const TvInfo: React.FC = () => {
-
     const tvDetail = useRecoilValue(getTvDetailState);
+    const tvCasts = useRecoilValue(getTvCastState);
     const tvStreaming = useRecoilValue(getTvStreamingState);
     const tvImgBaseUrl = useRecoilValue(getTvImgBaseUrl);
+    const setIsWatchState = useSetRecoilState(isWatchState);
+    const isWatch = useRecoilValue(isWatchState)
+
+    const onClickAddWatch = async() => {
+        const watch: any = addWatch(tvDetail, tvCasts);
+        setIsWatchState(true)
+    }
+
+    const onClickDestroyWatch = async() => {
+        const watch: any = destroyWatch(Number(tvDetail.id));
+        setIsWatchState(false)
+    }
+
+    const watchButton = () => {
+        
+        if (isWatch) {
+            return (
+                <button onClick={onClickDestroyWatch}>
+                    <PlaylistRemoveIcon />
+                </button>
+            )
+        }else if (isWatch === false) {
+            return (
+                <button onClick={onClickAddWatch}>
+                    <PlaylistAddIcon />
+                </button>
+            )
+        } else {
+            return null
+        }
+    }
+
 
     const getFlatrate = () => {
         const isFlatrate: boolean | undefined = tvStreaming?.hasOwnProperty('flatrate')
@@ -75,7 +112,7 @@ export const TvInfo: React.FC = () => {
         if(isBuy) {
             return(
                 <ul className={styles.streaming_box}>
-                    {tvStreaming?.rent.map(service => (
+                    {tvStreaming?.buy.map(service => (
                         <li 
                             className={styles.streaming}
                             key={service.provider_name}
@@ -93,6 +130,7 @@ export const TvInfo: React.FC = () => {
             )
         }
     }
+
 
     return (
         <section className={styles.tv_info}>
@@ -160,6 +198,10 @@ export const TvInfo: React.FC = () => {
                         <div className={styles.overview_box}>
                             <h3 className={styles.overview_header}>概要</h3>
                             <p>{tvDetail?.overview}</p>
+                            
+                        </div>
+                        <div>
+                            {watchButton()}
                             
                         </div>
                     </section>
