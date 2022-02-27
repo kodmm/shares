@@ -7,7 +7,6 @@ export interface ITv {
 
 export interface IDetail {
     backdrop_path: string;
-    // backdrop_path: string | null;
     created_by: ICreatedBy[];
     episode_run_time: number[];
     first_air_date: string;
@@ -40,6 +39,78 @@ export interface IDetail {
     vote_count: number;
     videos: IVideo;
     images: IImage;
+}
+
+const initILastEpisodeToAir: ILastEpisodeToAir = {
+    air_date: '',
+    episode_number: 0,
+    id: 0,
+    name: '',
+    overview: '',
+    production_code: '',
+    season_number: 0,
+    still_path: '',
+    // still_path: string | null;
+    vote_average: 0,
+    vote_count: 0,
+}
+
+const initISpokenLanguage: ISpokenLanguage = {
+    english_name: '',
+    iso_639_1: '',
+    name: '',
+}
+
+const initIVideo: IVideo = {
+    results: [],
+}
+
+const initIImage: IImage = {
+    backdrops: [],
+    logos: [],
+    posters: [],
+}
+
+export const initICredit: ICredit = {
+    cast: [],
+    crew: [],
+    id: 0,
+}
+
+export const initIDetail: IDetail = {
+    backdrop_path: '',
+    created_by: [],
+    episode_run_time: [],
+    first_air_date: '',
+    genres: [],
+    homepage: '',
+    id: 0,
+    in_production: false,
+    languages: [],
+    last_air_date: '',
+    last_episode_to_air: initILastEpisodeToAir,
+    name: '',
+    next_episode_to_air: null,
+    networks: [],
+    number_of_episodes: 0,
+    number_of_seasons: 0,
+    origin_country: [],
+    original_language: '',
+    original_name: '',
+    overview: '',
+    popularity: 0,
+    poster_path: '',
+    production_companies: [],
+    production_countries: [],
+    seasons: [],
+    spoken_languages: initISpokenLanguage,
+    status: '',
+    tagline: '',
+    type: '',
+    vote_average: 0,
+    vote_count: 0,
+    videos: initIVideo,
+    images: initIImage,
 }
 
 export interface ICreatedBy {
@@ -120,13 +191,15 @@ export interface IImage {
     posters: IPoster[];
 }
 
+
+
 export interface IPoster {
     aspect_ratio: number
     height: number
     iso_639_1: string
     file_path: string
     vote_average: number
-    vote_count:number
+    vote_count: number
     width: number
 }
 
