@@ -7,7 +7,7 @@ export const getTvImgBaseUrl = selector({
     key: RecoilSelectorKeys.TV_BASEURL,
     get: ({get}) => {
         const tv = get(tvState)
-        return tv?.baseUrl
+        return tv.baseUrl
     }
 })
 
@@ -15,7 +15,7 @@ export const getTvDetailState = selector({
     key: RecoilSelectorKeys.TV_DETAIL,
     get: ({get}) => {
         const tv = get(tvState)
-        return tv?.resDetail
+        return tv.resDetail
     }
 })
 
@@ -23,7 +23,7 @@ export const getTvCastState = selector({
     key: RecoilSelectorKeys.TV_CREDIT,
     get: ({get}) => {
         const tv = get(tvState)
-        return tv?.credits.cast
+        return tv.credits.cast
     }
 })
 
@@ -31,7 +31,7 @@ export const getTvCrewState = selector({
     key: RecoilSelectorKeys.TV_CREW,
     get: ({get}) => {
         const tv = get(tvState)
-        return tv?.credits.crew
+        return tv.credits.crew
     }
 })
 
