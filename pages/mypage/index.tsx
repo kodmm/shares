@@ -32,8 +32,12 @@ const MyPage: NextPage = ({ data }: any) => {
     
 
     useEffect(() => {
-        setUser(data);
+        setUser(data.user);
     },[])
+
+    if (user === null) {
+        return null
+    }
 
     return(
         <div>
@@ -64,7 +68,7 @@ const MyPage: NextPage = ({ data }: any) => {
                 </div>
             </section>
             <p>Authenticated Successfully!!!</p>
-            <button onClick={() => logout()}>Log Out</button>
+            <button onClick={logout}>Log Out</button>
         </div>
     )
 }
@@ -90,7 +94,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
                                     console.error('Error:', error);
                                 })
 
-    console.log(data);
     return { props: data };
 }
 
