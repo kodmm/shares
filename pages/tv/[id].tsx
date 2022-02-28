@@ -1,26 +1,26 @@
 
 import { useEffect } from 'react';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetStaticPaths, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import styles from '../../styles/Tv.module.css';
-import { TvInfo } from '../../components/organisms/tvinfo';
-import { Casts } from '../../components/organisms/casts';
-import { Crews } from '../../components/organisms/crews';
-import { Backdrops } from '../../components/organisms/backdrops';
-import { Chats } from '../../components/organisms/chats';
+import { TvInfo, Casts, Crews, Backdrops, Chats } from '../../components/organisms/index';
+
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { tvState } from '../../recoil/atoms/tvState';
 import { getStreamingIsWatch } from '../../api/tv';
 import { getTvDetailState } from '../../recoil/selectors/tvSelector';
 import { tvStreamingState } from '../../recoil/atoms/tvStreamingState';
 import { isWatchState } from '../../recoil/atoms/watchState';
-import { IStreamingIsWatch } from '../../types/tvs/Tv';
+import { IStreamingIsWatch, ITv } from '../../types/tvs/Tv';
+import { Params } from '../../types/tvs/Params';
 const Tv: NextPage = ({ data }: any) => {
+    const router = useRouter();
     const tv = useRecoilValue(getTvDetailState);
     const setTv = useSetRecoilState(tvState);
     const setStreamingIsWatch = useSetRecoilState(tvStreamingState);
     const setIsWatchState = useSetRecoilState(isWatchState)
-    const { resDetail } = data;
-       
+
+    const { resDetail } = data
 
     const effectFunc = async() => {
         setTv(data)
@@ -56,18 +56,24 @@ const Tv: NextPage = ({ data }: any) => {
     );
 }
 
+export const getStaticPaths: GetStaticPaths = async() => {
+    return {
+        paths: [{ params: { id: '95718'}}, { params: {id: '65143'}} ],
+        fallback: 'blocking'
+    }
+}
 
-export const getServerSideProps: GetServerSideProps = async context => {
-    const params = context.params?.id as number | string;
-    let data: any;
-    await fetch(`http://10.0.0.1:3001/api/v1/tv/${params}`, {
+
+export const getStaticProps = async ({ params }: Params) => {
+    const { id } = params
+
+    const res: any = await fetch(`http://10.0.0.1:3001/api/v1/tv/${id}`, {
         method: 'GET'
         })
-        .then(response => data = response.json())
+    const data = await res.json()
     
-        .catch(error => {
-            console.error('Error:', error);
-        })
+    console.log(data)
+
     return { props: data };
 }
 
