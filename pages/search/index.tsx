@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import type { GetServerSideProps } from 'next';
+import Link from 'next/link';
 import type { IResSearchTv } from '../../types/searches/Tv';
 import { useRouter } from 'next/router';
-import { Container } from '@mui/material';
 import styles from '../../styles/Search.module.css'
 const Search: NextPage = ({ data }: any) => {
     const router = useRouter();
@@ -13,6 +13,7 @@ const Search: NextPage = ({ data }: any) => {
             <section className={styles.searchResults}>
             {searchTvs.resSearchTv.results.map(result => (
                 <div className={styles.tvInfo} key={result.id}>
+                    <Link href="/tv/[id]" as={`/tv/${result.id}`}>
                     <div className={styles.card}>
                         <div className={styles.image}>
                             <div className={styles.poster}>
@@ -30,6 +31,7 @@ const Search: NextPage = ({ data }: any) => {
                             </div>
                         </div>
                     </div>
+                    </Link>
                     
                 </div>
                 
