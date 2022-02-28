@@ -3,11 +3,8 @@ import { useEffect } from 'react';
 import type { GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import styles from '../../styles/Tv.module.css';
-import { TvInfo } from '../../components/organisms/tvinfo';
-import { Casts } from '../../components/organisms/casts';
-import { Crews } from '../../components/organisms/crews';
-import { Backdrops } from '../../components/organisms/backdrops';
-import { Chats } from '../../components/organisms/chats';
+import { TvInfo, Casts, Crews, Backdrops, Chats } from '../../components/organisms/index';
+
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { tvState } from '../../recoil/atoms/tvState';
 import { getStreamingIsWatch } from '../../api/tv';
