@@ -4,6 +4,8 @@ export const RecoilAtomKeys = {
     TV_STREAMING_STATE: 'tvStreamingState',
     WATCH_WATCH_STATE: 'watchWatchState',
     WATCH_IS_WATCH: 'watchIsWatchState',
+    COPY_STATE: 'copyState',
+
 } as const
 
 type RecoilAtomKeys = typeof RecoilAtomKeys[keyof typeof RecoilAtomKeys]
