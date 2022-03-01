@@ -11,7 +11,7 @@ export type UserState = {
     createdAt: string
     updatedAt: string
 }
-export const userState = atom<UserState | null>({
+export const userState = atom<UserState | undefined>({
     key: RecoilAtomKeys.USER_STATE,
-    default: null
+    default: undefined
 })
