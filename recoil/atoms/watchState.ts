@@ -13,9 +13,9 @@ interface VideoState extends IVideo {
     Actors: IActor[]
 }
 
-export const watchState = atom<WatchState[] | [] >({
-    key: RecoilAtomKeys.WATCH_WATCH_STATE,
-    default: [],
+export const watchesState = atom<IWatchState[] | undefined>({
+    key: RecoilAtomKeys.WATCH_WATCHES_STATE,
+    default: undefined,
 })
 
 export const isWatchState = atom<boolean | null>({
