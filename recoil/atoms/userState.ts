@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import { RecoilAtomKeys } from '../RecoilKeys';
-type UserState = {
+export type UserState = {
     id: string
     email: string
     displayName: string

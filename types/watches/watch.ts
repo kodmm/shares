@@ -8,8 +8,6 @@ type GenreNameKeys = typeof GenreNameKeys[keyof typeof GenreNameKeys]
 
 export interface IWatch extends IWatchData {
     id: number,
-    user_id: string,
-    video_id: number,
     created_at: string,
     updated_at: string,
 }

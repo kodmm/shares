@@ -1,6 +1,6 @@
-import { IWatchData, GenreNameKeys, IWatch } from '../types/watches/watch';
-import { IVideoData } from '../types/watches/video';
-import { IActorData } from '../types/watches/actor';
+import { IWatchData, GenreNameKeys } from '../types/watches/watch';
+import { IVideo } from '../types/watches/video';
+import { IActor } from '../types/watches/actor';
 import { postWatch, deleteWatch } from '../api/watch';
 import { ICast, IDetail } from '../types/tvs/Tv';
 
@@ -11,8 +11,8 @@ export const addWatch = async (tv: IDetail, casts: ICast[],) => {
         genreName: GenreNameKeys.TV,
     }
 
-    const actors: IActorData[] = casts.slice(0, 3).map(cast => {
-        const actor: IActorData = {
+    const actors: IActor[] = casts.slice(0, 3).map(cast => {
+        const actor: IActor = {
             id: Number(cast.id),
             name: cast.name,
             profile_path: cast.profile_path,
@@ -20,7 +20,7 @@ export const addWatch = async (tv: IDetail, casts: ICast[],) => {
         return actor
     })
 
-    const video: IVideoData = {
+    const video: IVideo = {
         id: Number(tv.id),
         name: tv.name,
         poster_path: tv.poster_path,
@@ -28,7 +28,7 @@ export const addWatch = async (tv: IDetail, casts: ICast[],) => {
     }
 
 
-    const data: { 'actors': IActorData[], 'video':  IVideoData, 'watch': IWatchData} 
+    const data: { 'actors': IActor[], 'video':  IVideo, 'watch': IWatchData} 
             = { 'actors': actors, 'video':  video, 'watch': watch }     
             
     const resWatch: any = await postWatch(data);

@@ -4,10 +4,13 @@ import { IWatch } from '../../types/watches/watch';
 import { IActor } from '../../types/watches/actor';
 import { IVideo } from '../../types/watches/video';
 
-type WatchState = {
-    watch: IWatch,
-    actors: IActor[],
-    video: IVideo
+
+export interface IWatchState extends IWatch {
+    Video: VideoState,
+}
+
+interface VideoState extends IVideo {
+    Actors: IActor[]
 }
 
 export const watchState = atom<WatchState[] | [] >({
