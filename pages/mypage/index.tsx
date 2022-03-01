@@ -1,20 +1,46 @@
-import { Logout } from '@mui/icons-material';
-import type { GetServerSideProps, NextPage} from 'next';
+import type { NextPage} from 'next';
+import useSWR, { Key } from 'swr';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import type { NextRouter } from 'next/router';
 import type { IAuth } from '../../types/auths/auth';
-import { useSetRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { userState } from '../../recoil/atoms/userState';
-import { getUserState } from '../../recoil/selectors/userSelector';
+import { useSetRecoilState, useRecoilValue, useResetRecoilState, useRecoilState } from 'recoil';
+import { userState, UserState } from '../../recoil/atoms/userState';
+import { watchesState, IWatchState } from '../../recoil/atoms/watchState';
+
 import styles from '../../styles/mypage.module.css';
 import Image from 'next/image';
-const MyPage: NextPage = ({ data }: any) => {
+
+const MyPage: NextPage = () => {
     const router: NextRouter = useRouter();
-    const setUser = useSetRecoilState(userState);
+    const [user, setUser] = useRecoilState(userState);
+    const [watches, setWatches] = useRecoilState(watchesState);
     const resetUser = useResetRecoilState(userState);
-    const user = useRecoilValue(getUserState);
     
+
+    const mypageFetcher = async(url: string): Promise<{ user: UserState, watches: IWatchState[] | []}> => {
+        const  resData: { data: { user: UserState, watches: IWatchState[] } } = await fetch('http://localhost:3001/api/v1/' + url, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+        }).then(response => response.json())
+        console.log('smap',resData)
+        const { data }: { data: { user: UserState, watches: IWatchState[]| [] } } = resData
+        return data
+
+    }
+
+    const getUserWatches = () => {
+        const url: Key = '/mypage';
+        const { data, error } = useSWR(url, mypageFetcher)
+        return {
+            data: data,
+            isLoading: !error && !data,
+            isError: error
+        }
+    }
+    const { data, isLoading, isError } = getUserWatches();
+ 
     const logout = async() => {
         const data: IAuth = await fetch("http://localhost:3001/api/v1/auth/logout", {
             mode: 'cors',
@@ -29,16 +55,18 @@ const MyPage: NextPage = ({ data }: any) => {
         data.data.isAuth? null: router.push('/')
     }
 
-    
-
     useEffect(() => {
-        setUser(data.user);
-    },[])
+        setUser(data?.user)
+        setWatches(data?.watches)
+        console.log('effect', data?.user)
+        console.log('user',user)
+        console.log('watch', watches)
+    }, [data])
 
-    if (user === null) {
-        return null
-    }
+    if(isLoading) return <div>is loading...</div>
+    if(isError) return <div>failed to load</div>
 
+    if (user === undefined) return <div>hoge</div>
     return(
         <div>
             <section className={styles.profile_box}>
@@ -72,30 +100,5 @@ const MyPage: NextPage = ({ data }: any) => {
         </div>
     )
 }
-
-export const getServerSideProps: GetServerSideProps = async context => {
-    const url: string = `http://10.0.0.1:3001/api/v1/mypage`
-    let query: string = '';
-
-    console.log(context.req.headers.cookie)
-
-    const cookie: string = context.req.headers.cookie? context.req.headers.cookie : ''
-
-    
-
-    if (cookie) {
-        const id: string = cookie.split('=')[1]
-        query = `?id=${id}`
-    }
-
-    const data: any = await fetch(url + query)
-                                .then(response => response.json())
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                })
-
-    return { props: data };
-}
-
 
 export default MyPage;
