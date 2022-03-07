@@ -16,9 +16,12 @@ export const postWatch = async(data: { actors: IActor[], video:  IVideo, watch: 
 }
 
 export const deleteWatch = async (id: number) => {
-    await fetch(`http://localhost:3001/api/v1/watch/${id}`, {
+    const resData: any = await fetch(`http://localhost:3001/api/v1/watch/${id}`, {
         mode: 'cors',
         method: 'DELETE',
         credentials: 'include',
     }).then(response => response.json())
+    return resData
+}
+
 }
