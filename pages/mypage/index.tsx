@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import type { NextRouter } from 'next/router';
 import type { IAuth } from '../../types/auths/auth';
-import { useSetRecoilState, useRecoilValue, useResetRecoilState, useRecoilState } from 'recoil';
+import { useResetRecoilState, useRecoilState, useSetRecoilState } from 'recoil';
 import { userState, UserState } from '../../recoil/atoms/userState';
 import { watchesState, IWatchState } from '../../recoil/atoms/watchState';
 
@@ -14,7 +14,7 @@ import Image from 'next/image';
 const MyPage: NextPage = () => {
     const router: NextRouter = useRouter();
     const [user, setUser] = useRecoilState(userState);
-    const [watches, setWatches] = useRecoilState(watchesState);
+    const setWatches = useSetRecoilState(watchesState);
     const resetUser = useResetRecoilState(userState);
     
 
@@ -55,12 +55,12 @@ const MyPage: NextPage = () => {
         data.data.isAuth? null: router.push('/')
     }
 
-    useEffect(() => {
-        setUser(data?.user)
-        setWatches(data?.watches)
-        console.log('effect', data?.user)
-        console.log('user',user)
-        console.log('watch', watches)
+    useEffect(() => {  
+        if(data !== undefined) {
+            setUser(data.user)
+            setWatches(data.watches)
+        }
+
     }, [data])
 
     if(isLoading) return <div>is loading...</div>
