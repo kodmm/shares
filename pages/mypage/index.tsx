@@ -82,8 +82,8 @@ const MyPage: NextPage = () => {
                             />
                             
                         </li>
-                        <li className={styles.data}>
-                        <h3>{user.displayName}</h3>
+                        <li className={styles.profile_name}>
+                            <p className={styles.display_name}>{user.displayName}</p>
                         </li>
                     </ul>
                 </div>
