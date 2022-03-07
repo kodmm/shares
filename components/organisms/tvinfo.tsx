@@ -66,7 +66,6 @@ export const TvInfo: React.FC = () => {
                                 <ContentCopyIcon className={styles.copyicon} onClick = {onClickCopyButton} />
                                 <p className={styles.iconlabel}>{copy.iconLabel}</p>
                             </div>
-
                             
                         </div>
                         <div className={styles.genres}>
