@@ -24,8 +24,7 @@ const MyPage: NextPage = () => {
             method: 'GET',
             credentials: 'include',
         }).then(response => response.json())
-        console.log('smap',resData)
-        const { data }: { data: { user: UserState, watches: IWatchState[]| [] } } = resData
+        const { data }: { data: { user: UserState, watches: IWatchState[] } } = resData
         return data
 
     }
