@@ -1,16 +1,18 @@
 import React from 'react';
-import Image from 'next/image';
 import styles from '../../styles/streamingServices.module.css';
-import { useRecoilValue } from 'recoil';
-import { getTvStreamingState } from '../../recoil/selectors/tvSelector';
 import { Buy, Flatrate, Rent } from '../atoms/index';
+import { IStreamingService } from '../../types/tvs/Tv';
 
-export const StreamingServices: React.FC = () => {
-    const tvStreaming = useRecoilValue(getTvStreamingState)
+type Props = {
+    streaming: IStreamingService
+}
+
+export const StreamingServicesMypage: React.FC<Props> = ({ streaming }) => {
+    const tvStreaming: IStreamingService = streaming
 
     if (tvStreaming) {
         return(
-            <div className={styles.streaming_package}>
+            <div className={`${styles.streaming_package} ${styles.no_wrap}`}>
                 <div className={styles.flatrate}>
                     <h4 className={styles.streaming_title}>サブスクリプション</h4>
                     <Flatrate streaming={tvStreaming}/>

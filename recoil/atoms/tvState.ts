@@ -8,7 +8,7 @@ export const tvState = atom<ITv>({
     default: {
         resDetail: initIDetail,
         credits: initICredit,
-        baseUrl: 'https://image.tmdb.org/t/p',
+        baseUrl: 'https://image.tmdb.org/t/p/w500',
     }
 })
 

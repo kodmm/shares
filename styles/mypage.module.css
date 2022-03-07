@@ -1,35 +1,43 @@
-.profile_box {
+.mypage {
     width: 100%;
-    height: 500px;
-    padding: 8px 16px;
-    background-color: #e1f5fe;
+    padding: 8px 32px;
+    background-color: #fafafa;
 }
-
+.profile_content {
+    max-height: 290px;
+}
 .profile {
-    width: 100%;
-    height: 100%;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    background-color: #b2ebf2;
 }
-.data {
+.profile_image {
     list-style: none;
+    padding: 8px 8px;
+}
+.profile_name {
+    list-style: none;
+    padding: 16px 8px;
+}
+.photo {
+    border-radius: 12px;
+}
+.display_name {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
 }
 .content_box {
-    width: 100%;
-    height: 500px;
-    background-color: #b3e5fc;
-    display: 'flex';
-
+    height: auto;
+    max-height: 1025px;
+    padding: 16px 4px;
 }
-
-.favorites_box {
-    width: 50%;
-    height: 500px;
-    background-color: #81d4fa;
+.content {
+    height: 100%;
 }
-
-.watched_box {
-    width: 50%;
-    height: 500px;
-    background-color: #4fc3f7;
+.title {
+    margin: 0 4px 32px;
+    padding-bottom: 6px;
+    border-bottom: 4px solid black;
+    font-size: 28px;
 }

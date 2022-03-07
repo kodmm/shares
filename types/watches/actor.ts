@@ -1,9 +1,4 @@
-export interface IActor extends IActorData {
-    created_at: string,
-    updated_at: string,
-}
-
-export interface IActorData {
+export interface IActor {
     id: number,
     name: string,
     profile_path: string,

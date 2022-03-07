@@ -1,8 +1,10 @@
 .streaming_package {
     display: flex;
     flex-wrap: wrap;
-    background-color: #eceff1;
     padding: 16px 8px;
+}
+.no_wrap {
+    flex-wrap: nowrap;
 }
 .streaming_package:last-child {
     margin-right: 0px;

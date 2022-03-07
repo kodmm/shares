@@ -3,9 +3,14 @@ import Image from 'next/image';
 import styles from '../../styles/streamingServices.module.css';
 import { useRecoilValue } from 'recoil';
 import { getTvImgBaseUrl, getTvStreamingState } from '../../recoil/selectors/tvSelector';
+import { IStreamingService } from '../../types/tvs/Tv';
 
-export const Flatrate: React.FC = () => {
-    const tvStreaming = useRecoilValue(getTvStreamingState);
+type Props ={
+    streaming: IStreamingService
+}
+
+export const Flatrate: React.FC<Props> = ({ streaming }) => {
+    const tvStreaming: IStreamingService = streaming
     const tvImgBaseUrl = useRecoilValue(getTvImgBaseUrl);
 
     const isFlatrate: boolean | undefined = tvStreaming?.hasOwnProperty('flatrate');

@@ -1,11 +1,6 @@
-export interface IVideo extends IVideoData {
-    created_at: string,
-    updated_at: string,
-}
-
-export interface IVideoData {
+export interface IVideo {
     id: number,
-    name: string | undefined,
-    poster_path: string | undefined,
-    overview: string | undefined,
+    name: string
+    poster_path: string,
+    overview: string,
 }

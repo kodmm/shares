@@ -71,8 +71,6 @@ export const getStaticProps = async ({ params }: Params) => {
         method: 'GET'
         })
     const data = await res.json()
-    
-    console.log(data)
 
     return { props: data };
 }

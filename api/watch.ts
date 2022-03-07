@@ -1,8 +1,8 @@
-import type { IWatch, IWatchData } from '../types/watches/watch';
-import type { IVideoData } from '../types/watches/video';
-import type { IActorData } from '../types/watches/actor';
+import type { IWatchData } from '../types/watches/watch';
+import type { IVideo } from '../types/watches/video';
+import type { IActor } from '../types/watches/actor';
 
-export const postWatch = async(data: { 'actors': IActorData[], 'video':  IVideoData, 'watch': IWatchData} ) => {
+export const postWatch = async(data: { actors: IActor[], video:  IVideo, watch: IWatchData} ) => {
     await fetch('http://localhost:3001/api/v1/watch', {
         mode: 'cors',
         method: 'POST',
@@ -16,9 +16,23 @@ export const postWatch = async(data: { 'actors': IActorData[], 'video':  IVideoD
 }
 
 export const deleteWatch = async (id: number) => {
-    await fetch(`http://localhost:3001/api/v1/watch/${id}`, {
+    const resData: any = await fetch(`http://localhost:3001/api/v1/watch/${id}`, {
         mode: 'cors',
         method: 'DELETE',
         credentials: 'include',
     }).then(response => response.json())
+    return resData
+}
+
+export const patchWatch = async (id: number, data: { isWatch: boolean }) => {
+    const resData: any = await fetch(`http://localhost:3001/api/v1/watch/${id}`, {
+        mode: 'cors',
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+    return resData;
 }
