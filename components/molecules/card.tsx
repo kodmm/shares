@@ -81,7 +81,7 @@ export const Card: React.FC<Props> = ({ watch }) => {
                         >
                             <PlaylistAddCheckIcon  
                                 sx={{ fontSize: 50 }} 
-                                color={watch.isWatch? 'error' : 'success'}
+                                color={watch.isWatch? 'secondary' : 'success'}
                             />
                             <p className={styles.watchholder_label}>{watch.isWatch? 'no wached' : 'watched'}</p>
                         </li>
