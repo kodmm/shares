@@ -3,6 +3,7 @@ import { RecoilAtomKeys } from '../RecoilKeys';
 import { IWatch, WatchTabKeys } from '../../types/watches/watch';
 import { IActor } from '../../types/watches/actor';
 import { IVideo } from '../../types/watches/video';
+import { IStreamingService } from '../atoms/tvStreamingState';
 
 
 export interface IWatchState extends IWatch {
@@ -10,7 +11,8 @@ export interface IWatchState extends IWatch {
 }
 
 interface VideoState extends IVideo {
-    Actors: IActor[]
+    Actors: IActor[],
+    streaming: IStreamingService
 }
 
 export const watchesState = atom<IWatchState[] | undefined>({
