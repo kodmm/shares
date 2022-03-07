@@ -3,6 +3,9 @@
     flex-wrap: wrap;
     padding: 16px 8px;
 }
+.no_wrap {
+    flex-wrap: nowrap;
+}
 .streaming_package:last-child {
     margin-right: 0px;
     border-right: none;
