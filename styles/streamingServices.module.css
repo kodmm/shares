@@ -1,7 +1,6 @@
 .streaming_package {
     display: flex;
     flex-wrap: wrap;
-    background-color: #eceff1;
     padding: 16px 8px;
 }
 .streaming_package:last-child {
