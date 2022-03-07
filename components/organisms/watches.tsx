@@ -45,9 +45,17 @@ export const Watches: React.FC = () => {
                 </li>
             </ul>
             <ul className={styles.watches_box}>
-                {watches?.map(watch => (
+                {watches && watches.length === 0 && (
+                    <div className={styles.no_watch_list}>
+                        <li className={styles.no_watch_text}> No Watch list</li>
+                    </div>
+                    
+                )}
+
+                {watches && watches.map(watch => (
                     <Card watch={watch} key={watch.id} />
                 ))}
+                
             </ul>
         </div>
     )
