@@ -2,27 +2,26 @@ import React from 'react';
 import Image from 'next/image';
 import styles from '../../styles/streamingServices.module.css';
 import { useRecoilValue } from 'recoil';
-import { getTvImgBaseUrl, getTvStreamingState } from '../../recoil/selectors/tvSelector';
+import { getTvStreamingState } from '../../recoil/selectors/tvSelector';
 import { Buy, Flatrate, Rent } from '../atoms/index';
 
 export const StreamingServices: React.FC = () => {
     const tvStreaming = useRecoilValue(getTvStreamingState)
-    const tvImgBaseUrl = useRecoilValue(getTvImgBaseUrl);
 
     if (tvStreaming) {
         return(
             <div className={styles.streaming_package}>
                 <div className={styles.flatrate}>
                     <h4 className={styles.streaming_title}>サブスクリプション</h4>
-                    <Flatrate />
+                    <Flatrate streaming={tvStreaming}/>
                 </div>
                 <div className={styles.rent}>
                     <h4 className={styles.streaming_title}>レンタル</h4>
-                    <Rent />
+                    <Rent streaming={tvStreaming}/>
                 </div>
                 <div className={styles.buy}>
                     <h4 className={styles.streaming_title}>購入</h4>
-                    <Buy />
+                    <Buy streaming={tvStreaming}/>
                 </div>
             </div>
         )
