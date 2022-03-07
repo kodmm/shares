@@ -3,6 +3,7 @@ export const RecoilAtomKeys = {
     TV_STATE: 'tvState',
     TV_STREAMING_STATE: 'tvStreamingState',
     WATCH_WATCHES_STATE: 'watchWatchesState',
+    WATCH_WATCHES_TAB_STATE: 'watchWatchesTabState',
     WATCH_IS_WATCH: 'watchIsWatchState',
     COPY_STATE: 'copyState',
 
