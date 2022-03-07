@@ -89,12 +89,11 @@ const MyPage: NextPage = () => {
                 </div>
             </section>
             <section className={styles.content_box}>
-                <div className={styles.favorites_box}>
-
+                <div className={styles.content}>
+                    <h2 className={styles.title}>Watch holder</h2>
+                    <Watches />
                 </div>
-                <div className={styles.watched_box}>
-
-                </div>
+                
             </section>
             <p>Authenticated Successfully!!!</p>
             <button onClick={logout}>Log Out</button>
