@@ -17,3 +17,11 @@ export interface IWatchData {
     genreName: GenreNameKeys,
 }
 
+export const WatchTabKeys = {
+    ALL: 'ALL',
+    NOT_WATCHES: 'NOT_WATCHED',
+    WATCHED: 'WATCHED',
+} as const
+
+export type WatchTabKeys = typeof WatchTabKeys[keyof typeof WatchTabKeys]
+
