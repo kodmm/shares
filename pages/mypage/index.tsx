@@ -69,11 +69,11 @@ const MyPage: NextPage = () => {
 
     if (user === undefined) return <div>is loading...</div>
     return(
-        <div>
-            <section className={styles.profile_box}>
-                <div className={styles.profile}>
-                    <ul>
-                        <li className={styles.data}>
+        <div className={styles.mypage}>
+            <section className={styles.profile_content}>
+                <div>
+                    <ul className={styles.profile}>
+                        <li className={styles.profile_image}>
                             <Image
                                 src={user.photo}
                                 width={200}
