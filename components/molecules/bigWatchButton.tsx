@@ -28,7 +28,8 @@ export const BigWatchButton: React.FC = () => {
     if (isWatch) {
         return (
             <Button 
-                variant="outlined" 
+                variant="outlined"
+                color='error' 
                 startIcon={<PlaylistRemoveIcon />} 
                 className={styles.watch_button}
                 onClick={onClickDestroyWatch}
