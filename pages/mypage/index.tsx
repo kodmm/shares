@@ -7,6 +7,8 @@ import type { IAuth } from '../../types/auths/auth';
 import { useResetRecoilState, useRecoilState, useSetRecoilState } from 'recoil';
 import { userState, UserState } from '../../recoil/atoms/userState';
 import { watchesState, IWatchState } from '../../recoil/atoms/watchState';
+import { Watches } from '../../components/organisms/watches';
+import { Loading } from '../../components/atoms/loading';
 
 import styles from '../../styles/mypage.module.css';
 import Image from 'next/image';
@@ -62,10 +64,10 @@ const MyPage: NextPage = () => {
 
     }, [data])
 
-    if(isLoading) return <div>is loading...</div>
+    if(isLoading) return <Loading />
     if(isError) return <div>failed to load</div>
 
-    if (user === undefined) return <div>hoge</div>
+    if (user === undefined) return <div>is loading...</div>
     return(
         <div>
             <section className={styles.profile_box}>
