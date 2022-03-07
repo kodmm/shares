@@ -24,4 +24,15 @@ export const deleteWatch = async (id: number) => {
     return resData
 }
 
+export const patchWatch = async (id: number, data: { isWatch: boolean }) => {
+    const resData: any = await fetch(`http://localhost:3001/api/v1/watch/${id}`, {
+        mode: 'cors',
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+    return resData;
 }
