@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/card.module.css';
+import { StreamingServicesMypage } from '../molecules/streamingServicesMypage';
+import { CopyButton } from '../atoms/copyButton';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+
 import { getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';
+import { getWatchWatchState } from '../../recoil/selectors/watchSelector';
 import { IWatchState } from '../../recoil/atoms/watchState';
+import { watchesState } from '../../recoil/atoms/watchState';
 import { IActor } from '../../types/watches/actor';
 import { IWatch } from '../../types/watches/watch';
 import { cardStatusKeys } from '../../types/watches/cardStatus';
-import { getWatchWatchState } from '../../recoil/selectors/watchSelector';
-import { watchesState } from '../../recoil/atoms/watchState';
-import { CopyButton } from '../molecules/copyButton';
+
 import { updateWatch, destroyWatch } from '../../functions/watch';
-import { StreamingServicesMypage } from '../molecules/streamingServicesMypage';
 
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';

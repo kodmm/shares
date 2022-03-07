@@ -1,30 +1,29 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import styles from '../../styles/copybutton.module.css';
-import { useRecoilState, useResetRecoilState } from 'recoil';
-import { IconLabelKeys, copyState } from '../../recoil/atoms/copyState';
+import { copyNameKeys } from '../../types/watches/cardStatus';
 
 type Props = {
-    name: string
+    name: string,
 }
 
 export const CopyButton: React.FC<Props> = ({ name }: Props) => {
-    const [copy, setCopy] = useRecoilState(copyState);
-    const resetCopy = useResetRecoilState(copyState);
+    const [iconLabel, setIconLabel] = useState<copyNameKeys>(copyNameKeys.COPY)
 
     const onClickCopyButton = (name: string) => {
         navigator.clipboard.writeText(name)
-        setCopy({
-            iconLabel: IconLabelKeys.COPIED,
-        })
-
-        setTimeout(resetCopy,1500);
+        setIconLabel(copyNameKeys.COPIED)
+        setTimeout(resetIconLabel, 1500)
     }
+
+    const resetIconLabel = () => setIconLabel(copyNameKeys.COPY)
+
+    
 
     return(
         <div className={styles.copybutton_box}>
             <ContentCopyIcon className={styles.copyicon} onClick = {() => onClickCopyButton(name)} />
-            <p className={styles.iconlabel}>{copy.iconLabel}</p>
+            <p className={styles.iconlabel}>{iconLabel}</p>
         </div>
     )
 }

@@ -1,14 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import { useRecoilValue, useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styles from '../../styles/Tvinfo.module.css';
 import { BigWatchButton, StreamingServices } from '../molecules/index';
 import { getTvDetailState, getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';
-import { IconLabelKeys, copyState } from '../../recoil/atoms/copyState';
+import { CopyButton } from '../atoms/copyButton';
 
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from 'swiper';
@@ -22,16 +21,6 @@ SwiperCore.use([Pagination, Navigation]);
 export const TvInfo: React.FC = () => {
     const tvDetail = useRecoilValue(getTvDetailState);
     const tvImgBaseUrl = useRecoilValue(getTvImgBaseUrl);
-    const [copy, setCopy] = useRecoilState(copyState);
-    const resetCopy = useResetRecoilState(copyState);
-    const onClickCopyButton = () => {
-        navigator.clipboard.writeText(tvDetail.name)
-        setCopy({
-            iconLabel: IconLabelKeys.COPIED,
-        })
-
-        setTimeout(resetCopy,1500);
-    }
 
     return (
         <section className={styles.tv_info}>
@@ -62,11 +51,7 @@ export const TvInfo: React.FC = () => {
                     <section className={styles.description}>
                         <div className={styles.title_box}>
                             <h2 className={styles.title}>{tvDetail.name}</h2>
-                            <div className={styles.copybutton_box}>
-                                <ContentCopyIcon className={styles.copyicon} onClick = {onClickCopyButton} />
-                                <p className={styles.iconlabel}>{copy.iconLabel}</p>
-                            </div>
-                            
+                            <CopyButton name={tvDetail.name} />
                         </div>
                         <div className={styles.genres}>
                             <Stack direction="row" spacing={1}>
@@ -74,7 +59,6 @@ export const TvInfo: React.FC = () => {
                                     <Chip 
                                         label={genre.name}
                                         variant="outlined" 
-                                        // onClick={() => console.log("test")} 
                                         key={genre.id}
                                     />
                                 ))}
