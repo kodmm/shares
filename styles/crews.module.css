@@ -11,10 +11,10 @@
     border-bottom: 2px solid; 
 }
 
-.scrollBox {
+.scroll_box {
     position: relative;
 }
-.scrollBox::after{
+.scroll_box::after{
     content: "";
     top: 0;
     right: 0;
@@ -22,33 +22,30 @@
     height: 100%;
     position: absolute;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 100%);
-
 }
 
 .card {
-    box-shadow: 0px 1px 2px;
+    box-shadow: 0 0 2px;
     list-style-type: none;
     margin: 10px 10px 10px 5px;
     border-radius: 8px;
+    width: 140px;
 
 }
-.imageBox {
+.image_box {
     width: 140px;
     height: 180px;
     border-radius: inherit;
 }
 .image {
-    width: 100%;
-    height: 100%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-
 }
 
 .text {
     padding: 14px 8px 8px;
 }
-.character {
+.department_name {
     margin: 0;
     padding-top: 8px;
 }
