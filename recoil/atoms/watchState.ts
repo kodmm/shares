@@ -20,8 +20,8 @@ export const watchesState = atom<IWatchState[] | undefined>({
     default: undefined,
 })
 
-export const isWatchState = atom<boolean | null>({
-    key: RecoilAtomKeys.WATCH_IS_WATCH,
+export const watchState = atom<IWatch | null | undefined>({
+    key: RecoilAtomKeys.WATCH_STATE,
     default: null,
 })
 
