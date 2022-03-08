@@ -11,15 +11,15 @@ export const StreamingServices: React.FC = () => {
     if (tvStreaming) {
         return(
             <div className={styles.streaming_package}>
-                <div className={styles.flatrate}>
+                <div className={`${styles.flatrate} ${styles.streaming_line}`}>
                     <h4 className={styles.streaming_title}>サブスクリプション</h4>
                     <Flatrate streaming={tvStreaming}/>
                 </div>
-                <div className={styles.rent}>
+                <div className={`${styles.rent} ${styles.streaming_line}`}>
                     <h4 className={styles.streaming_title}>レンタル</h4>
                     <Rent streaming={tvStreaming}/>
                 </div>
-                <div className={styles.buy}>
+                <div className={`${styles.buy} ${styles.streaming_line}`}>
                     <h4 className={styles.streaming_title}>購入</h4>
                     <Buy streaming={tvStreaming}/>
                 </div>
