@@ -18,7 +18,7 @@ export const Casts: React.FC = () => {
                         <li className={styles.card} key={cast.id}>
                             <div className={styles.image_box}>
                                 <Image 
-                                    src={tvImgBaseUrl + cast.profile_path} 
+                                    src={cast.profile_path? tvImgBaseUrl + cast.profile_path : '/assets/images/no_image.jpeg'} 
                                     alt={cast.original_name} 
                                     className={styles.image}
                                     
