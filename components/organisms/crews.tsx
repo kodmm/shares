@@ -17,18 +17,16 @@ export const Crews: React.FC = () => {
                     {tvCrews?.map(crew => (
                         <li className={styles.card} key={crew.id}>
                             <div className={styles.image_box}>
-                                <Image src={tvImgBaseUrl + crew.profile_path} 
+                                <Image src={crew.profile_path? tvImgBaseUrl + crew.profile_path : '/assets/images/no_image.jpeg'} 
                                     alt={crew.original_name} 
                                     className={styles.image}
-                                    
                                     width={140}
                                     height={180}
                                 />
                             </div>
                             <div className={styles.text}>
-                                <p className={styles.character}>{crew.department}</p>
                                 <b>{crew.name}</b>
-                                
+                                <p className={styles.department_name}>{crew.department}</p>   
                             </div>
                         </li>
                     ))}

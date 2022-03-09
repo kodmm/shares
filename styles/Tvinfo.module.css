@@ -3,7 +3,7 @@
     display: flex;
     flex-wrap: nowrap;
     padding: 32px 40px;
-    align-items: center;
+    align-items: start;
     
 }
 .poster_box {
@@ -16,19 +16,15 @@
     height: 100%;
     /* object-fit: contain; */
 }
-/* .description_wrapper {
-    /* flex-grow: 1; */
-/* } */
 .description_box {
     width: 100%;
     height: 100%;
+    padding-top: 16px;
     padding-left: 32px;
-    /* background-color: green; */
 }
 .description {
     width: 100%;
     height: 100%;
-    /* background-color: aqua; */
 }
 .title_box{
     display: flex;
@@ -36,84 +32,24 @@
 
 }
 .title{
-    margin-top: 0;
-}
-.copybutton_box {
-    padding-left: 6px;
-}
-.copyicon {
-    color: #757575;
-}
-.copyicon:hover {
-    cursor: pointer;
-    color: #9e9e9e;
-}
-.copyicon:active {
-    color: #bdbdbd;
+    margin: 0;
 }
 
-.iconlabel {
-    margin-top: 0;
-    padding-top: 1px;
-    color: #424242;
-    font-size: smaller;
+.genres {
+    padding: 12px;
 }
 
 .overview_header {
     border-bottom: 1px solid;
     padding-bottom: 4px;
 }
-
-
-.streaming_package {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #eceff1;
-    padding: 16px 8px;
-}
-.streaming_package:last-child {
-    margin-right: 0px;
-    border-right: none;
+.overview {
+    padding-left: 12px;
 }
 
-.flatrate {
-    padding: 0px 12px;
-    border-right: 1px dashed #b0bec5;
-}
-
-.streaming_title {
-    margin-top: 0px
-}
 .streaming_header {
     border-bottom: 1px solid;
     padding-bottom: 4px;
 }
 
-.streaming_box {
-    display: flex;
-    padding-left: 0px;
-    justify-content: center;
-}
 
-.streaming {
-    padding-right: 8px;
-    list-style: none;
-}
-
-.provider_img {
-    border-radius: 4px;
-}
-
-.rent {
-    padding: 0px 12px;
-    border-right: 1px dashed #b0bec5;
-}
-
-.buy {
-    margin-right: 24px;
-    padding: 0px 12px;
-}
-
-.no_streaming {
-    color: #bdbdbd;
-}

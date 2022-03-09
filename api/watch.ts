@@ -3,7 +3,7 @@ import type { IVideo } from '../types/watches/video';
 import type { IActor } from '../types/watches/actor';
 
 export const postWatch = async(data: { actors: IActor[], video:  IVideo, watch: IWatchData} ) => {
-    await fetch('http://localhost:3001/api/v1/watch', {
+    const resData: any = await fetch('http://localhost:3001/api/v1/watch', {
         mode: 'cors',
         method: 'POST',
         credentials: 'include',
@@ -13,6 +13,8 @@ export const postWatch = async(data: { actors: IActor[], video:  IVideo, watch: 
         body: JSON.stringify(data)
         
     }).then(response => response.json())
+
+    return resData
 }
 
 export const deleteWatch = async (id: number) => {

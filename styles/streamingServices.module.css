@@ -1,7 +1,7 @@
 .streaming_package {
     display: flex;
     flex-wrap: wrap;
-    padding: 16px 8px;
+    padding: 8px 12px;
 }
 .no_wrap {
     flex-wrap: nowrap;
@@ -21,24 +21,28 @@
     padding-right: 8px;
     list-style: none;
 }
+.streaming_line {
+    border-left: 1px dashed #b0bec5;
+}
+.streaming_line:first-child {
+    padding-left: 0;
+    border-left: none;
+}
 
 .flatrate {
-    padding: 0px 12px;
-    border-right: 1px dashed #b0bec5;
+    padding: 0px 24px;
 }
 
 .streaming_title {
-    margin-top: 0px
+    margin: 0px
 }
 
 .rent {
-    padding: 0px 12px;
-    border-right: 1px dashed #b0bec5;
+    padding: 0px 24px;
 }
 
 .buy {
-    margin-right: 24px;
-    padding: 0px 12px;
+    padding: 0px 24px;
 }
 
 .no_streaming {

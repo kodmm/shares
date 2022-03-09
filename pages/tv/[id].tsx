@@ -10,7 +10,7 @@ import { tvState } from '../../recoil/atoms/tvState';
 import { getStreamingIsWatch } from '../../api/tv';
 import { getTvDetailState } from '../../recoil/selectors/tvSelector';
 import { tvStreamingState } from '../../recoil/atoms/tvStreamingState';
-import { isWatchState } from '../../recoil/atoms/watchState';
+import { watchState } from '../../recoil/atoms/watchState';
 import { IStreamingIsWatch, ITv } from '../../types/tvs/Tv';
 import { Params } from '../../types/tvs/Params';
 const Tv: NextPage = ({ data }: any) => {
@@ -18,7 +18,7 @@ const Tv: NextPage = ({ data }: any) => {
     const tv = useRecoilValue(getTvDetailState);
     const setTv = useSetRecoilState(tvState);
     const setStreamingIsWatch = useSetRecoilState(tvStreamingState);
-    const setIsWatchState = useSetRecoilState(isWatchState)
+    const setWatchState = useSetRecoilState(watchState)
 
     const { resDetail } = data
 
@@ -26,7 +26,7 @@ const Tv: NextPage = ({ data }: any) => {
         setTv(data)
         const resData: IStreamingIsWatch | any = await getStreamingIsWatch(resDetail.id);
         setStreamingIsWatch(resData.data.streaming)
-        setIsWatchState(resData.data.isWatch)
+        setWatchState(resData.data.watch)
 
     }
     useEffect(() => {
@@ -58,7 +58,7 @@ const Tv: NextPage = ({ data }: any) => {
 
 export const getStaticPaths: GetStaticPaths = async() => {
     return {
-        paths: [{ params: { id: '95718'}}, { params: {id: '65143'}} ],
+        paths: [{ params: { id: '95718'}}, { params: {id: '65143'}}, { params: { id: '21021'}}],
         fallback: 'blocking'
     }
 }
