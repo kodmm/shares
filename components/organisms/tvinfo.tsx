@@ -46,36 +46,32 @@ export const TvInfo: React.FC = () => {
                 </div>
                 <BigWatchButton />
             </div>
-            <div className={styles.description_wrapper}>
-                <div className={styles.description_box}>
-                    <section className={styles.description}>
-                        <div className={styles.title_box}>
-                            <h2 className={styles.title}>{tvDetail.name}</h2>
-                            <CopyButton name={tvDetail.name} />
-                        </div>
-                        <div className={styles.genres}>
-                            <Stack direction="row" spacing={1}>
-                                {tvDetail.genres.map(genre => (
-                                    <Chip 
-                                        label={genre.name}
-                                        variant="outlined" 
-                                        key={genre.id}
-                                    />
-                                ))}
-                            </Stack>
-                        </div>
-                        <div className={styles.streaming_wrapper}>
-                            <h3 className={styles.streaming_header}>ストリーミングサービス</h3>      
-                            <StreamingServices />
-                        </div>
-
-                        <div className={styles.overview_box}>
-                            <h3 className={styles.overview_header}>概要</h3>
-                            <p>{tvDetail.overview}</p>
-                            
-                        </div>
-                    </section>
-                </div>
+            <div className={styles.description_box}>
+                <section className={styles.description}>
+                    <div className={styles.title_box}>
+                        <h2 className={styles.title}>{tvDetail.name}</h2>
+                        <CopyButton name={tvDetail.name} />
+                    </div>
+                    <div className={styles.genres}>
+                        <Stack direction="row" spacing={1}>
+                            {tvDetail.genres.map(genre => (
+                                <Chip 
+                                    label={genre.name}
+                                    variant="outlined" 
+                                    key={genre.id}
+                                />
+                            ))}
+                        </Stack>
+                    </div>
+                    <div className={styles.streaming_wrapper}>
+                        <h3 className={styles.streaming_header}>ストリーミングサービス</h3>      
+                        <StreamingServices />
+                    </div>
+                    <div className={styles.overview_box}>
+                        <h3 className={styles.overview_header}>概要</h3>
+                        <p className={styles.overview}>{tvDetail.overview}</p>
+                    </div>
+                </section>
             </div>
         </section>
     )
