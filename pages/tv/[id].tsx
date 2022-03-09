@@ -58,7 +58,7 @@ const Tv: NextPage = ({ data }: any) => {
 
 export const getStaticPaths: GetStaticPaths = async() => {
     return {
-        paths: [{ params: { id: '95718'}}, { params: {id: '65143'}} ],
+        paths: [{ params: { id: '95718'}}, { params: {id: '65143'}}, { params: { id: '21021'}}],
         fallback: 'blocking'
     }
 }
