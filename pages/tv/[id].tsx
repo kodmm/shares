@@ -9,7 +9,8 @@ import { tvState } from '../../recoil/atoms/tvState';
 import { getStreamingIsWatch } from '../../api/tv';
 import { tvStreamingState } from '../../recoil/atoms/tvStreamingState';
 import { watchState } from '../../recoil/atoms/watchState';
-import { IStreamingIsWatch, ITv } from '../../types/tvs/Tv';
+import { IStreamingIsWatchChat } from '../../types/tvs/Tv';
+import { userState } from '../../recoil/atoms/userState';
 import { Params } from '../../types/tvs/Params';
 import { tvChatState } from '../../recoil/atoms/tvChat';
 const Tv: NextPage = ({ data }: any) => {
@@ -21,7 +22,7 @@ const Tv: NextPage = ({ data }: any) => {
 
     const effectFunc = async() => {
         setTv(data)
-        const resData: IStreamingIsWatch | any = await getStreamingIsWatch(resDetail.id);
+        const resData: IStreamingIsWatchChat | any = await getStreamingIsWatch(resDetail.id);
         setStreamingIsWatch(resData.data.streaming)
         setWatchState(resData.data.watch)
 
