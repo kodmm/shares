@@ -1,3 +1,4 @@
+import { IUser, IChatUser } from '../../types/chats/Chat';
 export interface ITv {
     resDetail: IDetail;
     credits: ICredit;
@@ -249,9 +250,11 @@ export interface ICredit {
     id: number;
 }
 
-export interface IStreamingIsWatch {
+export interface IStreamingIsWatchChat {
     streaming: IStreamingService,
     isWatch: boolean | null,
+    user: IUser,
+    chat: IChatUser[] | null,
 }
 
 export interface IStreamingService {
