@@ -1,21 +1,18 @@
 
 import { useEffect } from 'react';
 import type { GetStaticPaths, NextPage } from 'next';
-import { useRouter } from 'next/router';
 import styles from '../../styles/Tv.module.css';
 import { TvInfo, Casts, Crews, Backdrops, Chats } from '../../components/organisms/index';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { tvState } from '../../recoil/atoms/tvState';
 import { getStreamingIsWatch } from '../../api/tv';
-import { getTvDetailState } from '../../recoil/selectors/tvSelector';
 import { tvStreamingState } from '../../recoil/atoms/tvStreamingState';
 import { watchState } from '../../recoil/atoms/watchState';
 import { IStreamingIsWatch, ITv } from '../../types/tvs/Tv';
 import { Params } from '../../types/tvs/Params';
+import { tvChatState } from '../../recoil/atoms/tvChat';
 const Tv: NextPage = ({ data }: any) => {
-    const router = useRouter();
-    const tv = useRecoilValue(getTvDetailState);
     const setTv = useSetRecoilState(tvState);
     const setStreamingIsWatch = useSetRecoilState(tvStreamingState);
     const setWatchState = useSetRecoilState(watchState)
