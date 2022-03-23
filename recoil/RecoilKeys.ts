@@ -21,6 +21,7 @@ export const RecoilSelectorKeys = {
     WATCH_WATCH: 'watchWatch',
     WATCH_VIDEO_ID: 'watchWatchVideoID',
     WATCH_IS_WATCH: 'watchIsWatch',
+    CHAT_USER: 'chatUser',
 } as const
 
 type RecoilSelectorKeys = typeof RecoilSelectorKeys[keyof typeof RecoilSelectorKeys]
