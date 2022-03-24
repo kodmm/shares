@@ -29,7 +29,15 @@ export const Chats: React.FC = () => {
 
     const submitMessage = () => {
         setMessage(message.trim());
-        chatSocket.emit("client_to_server", {message: message});
+        if (user) {
+            const data: IChatData = { 
+                user_id: user.id,
+                video_id: tvDetail.id,
+                messageType: messageTypeKeys.TEXT,
+                message: message,
+            }
+            chatSocket.current?.emit("client_to_server", {data: { chat: data, user: user }})
+        }
         setMessage("");
     }
 
