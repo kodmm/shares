@@ -87,13 +87,12 @@ export const Chats: React.FC = () => {
                             onChange={(event) => changeMessage(event)}
 
                         />
-                        <Button 
-                            variant="contained" 
-                            color="success"
-                            className={styles.submit_button} 
-                            onClick={() => submitMessage()}
+                        <button
+                            className={`${message.length > 0 ? styles.submit_button : styles.submit_button_disabled}`}
+                            disabled={message.length > 0 ? false : true}
+                            onClick={submitMessage}
                         >コメント
-                        </Button>
+                        </button>
                     </div>
                     <div className={styles.chat}>
                         <ul className={styles.messages}>
