@@ -77,25 +77,29 @@ export const Chats: React.FC = () => {
         <div>
             <section className={styles.chat_wrapper}>
                 <div className={styles.chat_box}>
-                    <div className={styles.text_form}>
-                        <TextField 
-                            id="standard-basic" 
-                            label="Chat Message" 
-                            variant="standard" 
-                            className={styles.text_field}
-                            value={message}
-                            onChange={(event) => changeMessage(event)}
-                            multiline
-                            maxRows={10}
+                    {user && (
+                        <div className={styles.text_form}>
+                            <TextField 
+                                id="standard-basic" 
+                                label="Chat Message" 
+                                variant="standard" 
+                                className={styles.text_field}
+                                value={message}
+                                onChange={(event) => changeMessage(event)}
+                                multiline
+                                maxRows={10}
 
-                        />
-                        <button
-                            className={`${message.length > 0 ? styles.submit_button : styles.submit_button_disabled}`}
-                            disabled={message.length > 0 ? false : true}
-                            onClick={submitMessage}
-                        >コメント
-                        </button>
-                    </div>
+                            />
+                            <button
+                                className={`${message.length > 0 ? styles.submit_button : styles.submit_button_disabled}`}
+                                disabled={message.length > 0 ? false : true}
+                                onClick={submitMessage}
+                            >コメント
+                            </button>
+                        </div>
+                    )}
+                    
+                    
                     <div className={styles.chat}>
                         <ul className={styles.messages}>
                             {messagesMemo}
