@@ -20,23 +20,7 @@ export const Chats: React.FC = () => {
     const setMessages = useSetRecoilState(tvChatState);
 
     const tvDetail = useRecoilValue(getTvDetailState);
-
-
-    const startChat = () => {
-        setIsChat(true);
-        setIsChatName("Close chat");
-        chatSocket.emit("client_to_server_join", {room: tvDetail?.id.toString()});
-    }
-
-    const closeChat = () => {
-        setIsChat(false);
-        setIsChatName("Start chat");
-        chatSocket.close()
-    }
-
-    const changeChatStatus = () => {
-        isChat ? closeChat(): startChat();
-    }
+    const user = useRecoilValue(getChatUserState);
 
     const changeMessage = (event: any) => {
         const value: string = event.target.value;
