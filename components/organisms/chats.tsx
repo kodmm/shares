@@ -85,6 +85,8 @@ export const Chats: React.FC = () => {
                             className={styles.text_field}
                             value={message}
                             onChange={(event) => changeMessage(event)}
+                            multiline
+                            maxRows={10}
 
                         />
                         <button
