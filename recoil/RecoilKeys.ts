@@ -17,6 +17,7 @@ export const RecoilSelectorKeys = {
     TV_CREDIT: 'tvCast',
     TV_CREW: 'tvCrew',
     TV_STREAMING: 'tvStreaming',
+    TV_CHAT: 'tvChat',
     TV_BASEURL: 'tvBaseUrl',
     WATCH_WATCH: 'watchWatch',
     WATCH_VIDEO_ID: 'watchWatchVideoID',
