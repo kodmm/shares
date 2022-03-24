@@ -41,10 +41,6 @@ export const Chats: React.FC = () => {
         setMessage("");
     }
 
-    chatSocket.on("server_to_client", (data: {message: string}) => {
-        console.log("AAA")
-        setMessages((messages) => [data.message, ...messages]);
-    });
 
     const messagesMemo = useMemo(
         () => {
