@@ -16,9 +16,8 @@ export const Chats: React.FC = () => {
     const currentPath = router.asPath
     const chatSocket = useRef<Socket>()
     const [message, setMessage] = useState<string>("");
-    const [messages, setMessages] = useState<Array<string>>([]);
-
-    const chatSocket = io("http://localhost:3001/chat")
+    const messages = useRecoilValue(getChats);
+    const setMessages = useSetRecoilState(tvChatState);
 
     const tvDetail = useRecoilValue(getTvDetailState);
 
