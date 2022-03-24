@@ -77,7 +77,7 @@ export const Chats: React.FC = () => {
         <div>
             <section className={styles.chat_wrapper}>
                 <div className={styles.chat_box}>
-                    <div className={styles.textForm}>
+                    <div className={styles.text_form}>
                         <TextField 
                             id="standard-basic" 
                             label="Chat Message" 
