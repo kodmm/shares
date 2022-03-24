@@ -1,12 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
-import { io } from 'socket.io-client';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { io, Socket } from 'socket.io-client';
+import { useSetRecoilState, useRecoilValue } from 'recoil'; 
 import styles from '../../styles/chats.module.css';
-
+import { Message } from '../atoms/message';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { useRecoilValue } from 'recoil';
 import { getTvDetailState } from '../../recoil/selectors/tvSelector';
+import { getChats } from '../../recoil/selectors/chatSelector';
+import { tvChatState } from '../../recoil/atoms/tvChat';
+import { IChatData, messageTypeKeys, IChatUser, IUser, IChat } from '../../types/chats/Chat';
+import { getChatUserState } from '../../recoil/selectors/userSelector';
+import { useRouter } from 'next/router';
 
 export const Chats: React.FC = () => {
     const [isChat, setIsChat] = useState<boolean>(false);
