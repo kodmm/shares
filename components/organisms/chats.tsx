@@ -75,9 +75,6 @@ export const Chats: React.FC = () => {
     },[])
     return (
         <div>
-            <div>
-                <button onClick={() => changeChatStatus()}>{isChatName}</button>
-            </div>
             <section className={styles.chat_wrapper}>
                 <div className={styles.chat_box}>
                     <div className={styles.textForm}>
