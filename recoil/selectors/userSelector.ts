@@ -9,3 +9,20 @@ export const getUserState = selector({
         return user
     }
 })
+
+export const getChatUserState = selector({
+    key: RecoilSelectorKeys.CHAT_USER,
+    get: ({get}) => {
+        const user = get(userState)
+        if (user) {
+            return {
+                id: user.id,
+                displayName: user.displayName,
+                photo: user.photo,
+            }
+        } else {
+            return null
+        }
+        
+    }
+})
