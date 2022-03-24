@@ -12,9 +12,9 @@ import { getChatUserState } from '../../recoil/selectors/userSelector';
 import { useRouter } from 'next/router';
 
 export const Chats: React.FC = () => {
-    const [isChat, setIsChat] = useState<boolean>(false);
-    const [isChatName, setIsChatName] = useState<string>("start chat");
-
+    const router = useRouter()
+    const currentPath = router.asPath
+    const chatSocket = useRef<Socket>()
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<Array<string>>([]);
 
@@ -55,6 +55,37 @@ export const Chats: React.FC = () => {
         setMessages((messages) => [data.message, ...messages]);
     });
 
+    const messagesMemo = useMemo(
+        () => {
+            const messagesList = messages.map((message, idx)=> {
+                return <Message key={message.id} message={message} />
+            })
+            return messagesList
+        },
+        [messages],
+    );
+
+    
+    useEffect(() => {
+        const paramsId = currentPath.split('/')[2]
+        chatSocket.current = io("http://localhost:3001/chat")
+
+        chatSocket.current.emit("client_to_server_join", { data: { room: paramsId} });
+
+        chatSocket.current.on("server_to_client", ({ data }: { data: {message: IChat, user: IUser }}) => {
+            
+            if(data) {
+                const newMessage: IChatUser = {...data.message, User: data.user}
+                setMessages((messages) => [...messages, newMessage]);
+            }
+            
+        });
+
+        return () => {
+            chatSocket.current?.disconnect()
+        };
+        
+    },[])
     return (
         <div>
             <div>
@@ -82,19 +113,7 @@ export const Chats: React.FC = () => {
                     </div>
                     <div className={styles.chat}>
                         <ul className={styles.messages}>
-                            {messages.map((message, idx)=> (
-                                <li className={styles.message_box} key={idx}>
-                                    <div className={styles.message}>
-                                        <div className={styles.icon_box}>
-                                            <div className={styles.icon}>
-                                            </div>
-                                        </div>
-                                        <div className={styles.comment_box}>
-                                            <p className={styles.comment}>{message}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
+                            {messagesMemo}
                             
                         </ul>
                     </div>
