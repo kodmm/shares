@@ -16,15 +16,18 @@ import { tvChatState } from '../../recoil/atoms/tvChat';
 const Tv: NextPage = ({ data }: any) => {
     const setTv = useSetRecoilState(tvState);
     const setStreamingIsWatch = useSetRecoilState(tvStreamingState);
-    const setWatchState = useSetRecoilState(watchState)
-
+    const setWatch = useSetRecoilState(watchState);
+    const setUser = useSetRecoilState(userState);
+    const setChat = useSetRecoilState(tvChatState)
     const { resDetail } = data
 
     const effectFunc = async() => {
         setTv(data)
         const resData: IStreamingIsWatchChat | any = await getStreamingIsWatch(resDetail.id);
         setStreamingIsWatch(resData.data.streaming)
-        setWatchState(resData.data.watch)
+        setWatch(resData.data.watch)
+        setUser(resData.data.user)
+        setChat(resData.data.chat)
 
     }
     useEffect(() => {
