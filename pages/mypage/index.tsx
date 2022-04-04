@@ -14,10 +14,8 @@ import styles from '../../styles/mypage.module.css';
 import Image from 'next/image';
 
 const MyPage: NextPage = () => {
-    const router: NextRouter = useRouter();
     const [user, setUser] = useRecoilState(userState);
     const setWatches = useSetRecoilState(watchesState);
-    const resetUser = useResetRecoilState(userState);
     
 
     const mypageFetcher = async(url: string): Promise<{ user: UserState, watches: IWatchState[] | []}> => {
@@ -41,20 +39,6 @@ const MyPage: NextPage = () => {
         }
     }
     const { data, isLoading, isError } = getUserWatches();
- 
-    const logout = async() => {
-        const data: IAuth = await fetch("http://localhost:3001/api/v1/auth/logout", {
-            mode: 'cors',
-            method: 'DELETE',
-            credentials: 'include',
-        })
-        .then(response => response.json())
-        .catch(error => console.error(error))
-
-        resetUser();
-
-        data.data.isAuth? null: router.push('/')
-    }
 
     useEffect(() => {  
         if(data !== undefined) {
@@ -67,7 +51,7 @@ const MyPage: NextPage = () => {
     if(isLoading) return <Loading />
     if(isError) return <div>failed to load</div>
 
-    if (user === undefined) return <div>is loading...</div>
+    if (user === undefined || user === null) return <div>is loading...</div>
     return(
         <div className={styles.mypage}>
             <section className={styles.profile_content}>
@@ -95,8 +79,6 @@ const MyPage: NextPage = () => {
                 </div>
                 
             </section>
-            <p>Authenticated Successfully!!!</p>
-            <button onClick={logout}>Log Out</button>
         </div>
     )
 }
