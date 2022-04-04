@@ -4,4 +4,5 @@ export { Chats } from './chats';
 export { Crews } from './crews';
 export { Header } from './header';
 export { TvInfo } from './tvinfo';
-export { Watches } from './watches'
+export { Watches } from './watches';
+export { Footer } from './footer';
