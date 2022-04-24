@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '../../styles/streamingServices.module.css';
+import styles from '../molecules/StreamingServices.module.css';
 import { useRecoilValue } from 'recoil';
 import { getTvImgBaseUrl, getTvStreamingState } from '../../recoil/selectors/tvSelector';
 import { IStreamingService } from '../../types/tvs/Tv';

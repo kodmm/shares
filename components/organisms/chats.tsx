@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useSetRecoilState, useRecoilValue } from 'recoil'; 
-import styles from '../../styles/chats.module.css';
-import { Message } from '../atoms/message';
+import styles from './Chats.module.css';
+import { Message } from '../atoms';
 import TextField from '@mui/material/TextField';
 import { getTvDetailState } from '../../recoil/selectors/tvSelector';
 import { getChats } from '../../recoil/selectors/chatSelector';

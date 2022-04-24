@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styles from '../../styles/navigation.module.css';
+import styles from './Navigation.module.css';
 import { logout } from '../../functions/auth'
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState } from '../../recoil/atoms/userState';

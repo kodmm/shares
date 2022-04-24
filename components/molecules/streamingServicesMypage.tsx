@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/streamingServices.module.css';
+import styles from './StreamingServices.module.css';
 import { Buy, Flatrate, Rent } from '../atoms/index';
 import { IStreamingService } from '../../types/tvs/Tv';
 

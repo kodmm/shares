@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '../../styles/backdrops.module.css';
+import styles from './Backdrops.module.css';
 import { useRecoilValue } from 'recoil';
 import { getTvDetailState, getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';
 

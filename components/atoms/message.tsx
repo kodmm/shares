@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import styles from '../../styles/message.module.css';
+import styles from './Message.module.css';
 import { IChatUser } from '../../types/chats/Chat';
-import { ElapsedTime } from '../atoms/elapsedTime';
+import { ElapsedTime } from './index';
 
 type Props = {
     message: IChatUser
