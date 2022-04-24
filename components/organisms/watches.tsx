@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
-import styles from '../../styles/watches.module.css';
+import styles from './Watches.module.css';
 import { WatchTabKeys } from '../../types/watches/watch';
 
 import { watchesTabState } from '../../recoil/atoms/watchState';
 import { getWatchWatchState } from '../../recoil/selectors/watchSelector';
 
-import { Card } from '../molecules/card';
+import { Card } from '../molecules';
 
 export const Watches: React.FC = () => {
     const [tabState, setTabState] = useRecoilState(watchesTabState);

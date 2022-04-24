@@ -1,8 +1,8 @@
-export { Backdrops } from './backdrops';
-export { Casts } from './casts';
-export { Chats } from './chats';
-export { Crews } from './crews';
-export { Header } from './header';
-export { TvInfo } from './tvinfo';
-export { Watches } from './watches';
-export { Footer } from './footer';
+export { Backdrops } from './Backdrops';
+export { Casts } from './Casts';
+export { Chats } from './Chats';
+export { Crews } from './Crews';
+export { Footer } from './Footer';
+export { Header } from './Header';
+export { TvInfo } from './Tvinfo';
+export { Watches } from './Watches';

@@ -1,9 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
-import styles from '../../styles/streamingServices.module.css';
+import styles from './StreamingServices.module.css';
 import { useRecoilValue } from 'recoil';
 import { getTvStreamingState } from '../../recoil/selectors/tvSelector';
-import { Buy, Flatrate, Rent } from '../atoms/index';
+import { Buy, Flatrate, Rent } from '../atoms';
 
 export const StreamingServices: React.FC = () => {
     const tvStreaming = useRecoilValue(getTvStreamingState)

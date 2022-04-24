@@ -1,11 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
-import styles from '../../styles/Tvinfo.module.css';
+import styles from './Tvinfo.module.css';
 import { BigWatchButton, StreamingServices } from '../molecules/index';
 import { getTvDetailState, getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';
-import { CopyButton } from '../atoms/copyButton';
-
+import { CopyButton } from '../atoms';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 

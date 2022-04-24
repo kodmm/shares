@@ -1,6 +1,6 @@
-export { BigWatchButton } from './bigWatchButton';
-export { Card } from './card';
-export { Navigation } from './navigation';
-export { StreamingServices } from './streamingServices';
-export { StreamingServicesMypage } from './streamingServicesMypage';
+export { BigWatchButton } from './BigWatchButton';
+export { Card } from './Card';
+export { Navigation } from './Navigation';
+export { StreamingServices } from './StreamingServices';
+export { StreamingServicesMypage } from './StreamingServicesMypage';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/elapsedTime.module.css';
+import styles from './ElapsedTime.module.css';
 
 type Props ={
     createdAt: string

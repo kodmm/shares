@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/crews.module.css';
+import styles from './Crews.module.css';
 import Image from 'next/image'
 import { useRecoilValue } from 'recoil';
 import { getTvImgBaseUrl, getTvCrewState } from '../../recoil/selectors/tvSelector';

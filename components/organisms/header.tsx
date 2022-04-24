@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import styles from '../../styles/header.module.css';
+import styles from './Header.module.css';
 import { Navigation } from '../molecules'
 import { useSetRecoilState } from 'recoil';
 import { userState } from '../../recoil/atoms/userState';

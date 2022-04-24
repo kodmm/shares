@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import styles from '../../styles/copybutton.module.css';
+import styles from './CopyButton.module.css';
 import { copyNameKeys } from '../../types/watches/cardStatus';
 
 type Props = {

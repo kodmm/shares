@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import styles from "../../styles/login.module.css";
 import { TwitterLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
-import { Header } from '../../components/organisms/index'
+
 const Login: NextPage = () => {
     const changeTwitterPage = () => {
         window.location.href="http://localhost:3001/api/v1/auth/twitter"

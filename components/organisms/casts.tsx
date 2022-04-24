@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/casts.module.css'
+import styles from './Casts.module.css'
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { getTvCastState, getTvImgBaseUrl } from '../../recoil/selectors/tvSelector';

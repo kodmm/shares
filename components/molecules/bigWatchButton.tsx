@@ -5,7 +5,7 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { watchState } from '../../recoil/atoms/watchState';
-import styles from '../../styles/bigWatchButton.module.css';
+import styles from './BigWatchButton.module.css';
 import { getTvCastState, getTvDetailState } from '../../recoil/selectors/tvSelector';
 import { addWatch, destroyWatch } from '../../functions/watch';
 import { IWatch } from '../../types/watches/watch';
