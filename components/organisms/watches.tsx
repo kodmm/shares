@@ -21,6 +21,7 @@ export const Watches: React.FC = () => {
         return isActive
         
     }
+    console.log("watches", watches)
 
     return (
         <div className={styles.watches_holder}>

@@ -4,10 +4,10 @@ import { TwitterLoginButton, GoogleLoginButton } from 'react-social-login-button
 
 const Login: NextPage = () => {
     const changeTwitterPage = () => {
-        window.location.href="http://localhost:3001/api/v1/auth/twitter"
+        window.location.href= process.env.NEXT_PUBLIC_API_SERVER_URL + "/api/v1/auth/twitter"
     }
     const changeGooglePage = () => {
-        window.location.href="http://localhost:3001/api/v1/auth/google"
+        window.location.href= process.env.NEXT_PUBLIC_API_SERVER_URL + "/api/v1/auth/google"
     }
 
     return(

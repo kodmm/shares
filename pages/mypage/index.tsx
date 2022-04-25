@@ -1,14 +1,12 @@
 import type { NextPage} from 'next';
 import useSWR, { Key } from 'swr';
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import type { NextRouter } from 'next/router';
-import type { IAuth } from '../../types/auths/auth';
-import { useResetRecoilState, useRecoilState, useSetRecoilState } from 'recoil';
+
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userState, UserState } from '../../recoil/atoms/userState';
 import { watchesState, IWatchState } from '../../recoil/atoms/watchState';
-import { Watches } from '../../components/organisms/watches';
-import { Loading } from '../../components/atoms/loading';
+import { Watches } from '../../components/organisms';
+import { Loading } from '../../components/atoms';
 
 import styles from '../../styles/mypage.module.css';
 import Image from 'next/image';
@@ -19,7 +17,7 @@ const MyPage: NextPage = () => {
     
 
     const mypageFetcher = async(url: string): Promise<{ user: UserState, watches: IWatchState[] | []}> => {
-        const  resData: { data: { user: UserState, watches: IWatchState[] } } = await fetch('http://localhost:3001/api/v1/' + url, {
+        const  resData: { data: { user: UserState, watches: IWatchState[] } } = await fetch(process.env.NEXT_PUBLIC_API_SERVER_URL + "/api/v1/" + url, {
             mode: 'cors',
             method: 'GET',
             credentials: 'include',
