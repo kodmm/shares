@@ -55,7 +55,7 @@ export const Chats: React.FC = () => {
     
     useEffect(() => {
         const paramsId = currentPath.split('/')[2]
-        chatSocket.current = io("http://localhost:3001/chat")
+        chatSocket.current = io(process.env.NEXT_PUBLIC_API_SERVER_URL + "/chat")
 
         chatSocket.current.emit("client_to_server_join", { data: { room: paramsId} });
 

@@ -2,7 +2,7 @@ import { IAuth } from "../types/auths/auth"
 import { UserState } from "../recoil/atoms/userState"
 
 export const userFetcher = async(url: string): Promise<UserState | null> => {
-    const { data }: { data: {user: UserState } } = await fetch('http://localhost:3001/api/v1' + url, {
+    const { data }: { data: {user: UserState } } = await fetch(process.env.NEXT_PUBLIC_API_SERVER_URL + "/api/v1" + url, {
         mode: 'cors',
         method: 'GET',
         credentials: 'include'
@@ -11,7 +11,7 @@ export const userFetcher = async(url: string): Promise<UserState | null> => {
 
 }
 export const deleteSession = async() => {
-    const data: IAuth = await fetch("http://localhost:3001/api/v1/auth/logout", {
+    const data: IAuth = await fetch(process.env.NEXT_PUBLIC_API_SERVER_URL + "/api/v1/auth/logout", {
         mode: 'cors',
         method: 'DELETE',
         credentials: 'include',
