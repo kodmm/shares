@@ -6,6 +6,7 @@ export const RecoilAtomKeys = {
     WATCH_WATCHES_STATE: 'watchWatchesState',
     WATCH_WATCHES_TAB_STATE: 'watchWatchesTabState',
     WATCH_STATE: 'watchState',
+    POSTS_STATE: 'postsState',
 
 } as const
 
