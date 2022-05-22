@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import type { GetStaticPaths, NextPage } from 'next';
 import styles from '../../styles/Tv.module.css';

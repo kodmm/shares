@@ -1,3 +1,4 @@
+export { Card } from './Card';
 export { Buy } from './Buy';
 export { CopyButton } from './CopyButton';
 export { ElapsedTime } from './ElapsedTime';
