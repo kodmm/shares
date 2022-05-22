@@ -1,3 +1,4 @@
+export { Article } from './Article';
 export { Backdrops } from './Backdrops';
 export { Casts } from './Casts';
 export { Chats } from './Chats';
