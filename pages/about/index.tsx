@@ -9,8 +9,11 @@ import { useEffect } from 'react';
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const About: NextPage<Props> = ({ allPosts }) => {
-  const [posts, setPosts] = useRecoilState(postsState);
-  setPosts(allPosts)
+  const setPosts = useSetRecoilState(postsState);
+  useEffect(() => {
+    setPosts(allPosts)
+  },[])
+  
   return (
     <div className={styles.container}>
       <Topics />
