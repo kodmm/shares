@@ -25,19 +25,7 @@ const Topics: React.FC = () => {
             
             <div className={styles.grid}>
             {morePosts.map(post => (
-                <Link 
-                    key={post.slug}
-                    href={{
-                        pathname: 'about/[slug]',
-                        query: { slug: post.slug},
-                    }}
-                >
-                <a className={styles.card}>
-                    <h2>{post.slug} &rarr;</h2>
-                    <h3>{post.title}</h3>
-                    <p className={styles.date}>{post.date}</p>
-                </a>
-                </Link>
+                <Card post={post} key={post.slug}/>
             ))}
             
             </div>
