@@ -46,4 +46,4 @@ const getAllPosts = (fields: string[]) => {
     return posts
 }
 
-export { getAllPosts }
+export { getAllPosts, getPostBySlug }
