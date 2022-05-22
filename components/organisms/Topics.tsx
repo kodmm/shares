@@ -1,13 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import styles from './Topics.module.css'
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil'
+import { Card } from '../atoms'
+import { useRecoilValue } from 'recoil'
 import { getPosts } from '../../recoil/selectors/postSelector'
-import { Loading } from '../atoms'
 const Topics: React.FC = () => {
     const infoPost = useRecoilValue(getPosts('info'));
     const morePosts = useRecoilValue(getPosts('more'));
-    
     return(
         <main className={styles.main}>
             <h1 className={styles.title}>
@@ -20,18 +19,10 @@ const Topics: React.FC = () => {
             ~{' '}About Shares{' '}~
             </p>
 
-            <div className={styles.card}>
-            <Link href={{
-                pathname: 'about/[slug]',
-                query: { slug: infoPost[0]?.slug},
-            }}>
-                <a >
-                    <h2>{infoPost[0]?.slug} &rarr;</h2>
-                    <h3>{infoPost[0]?.title}</h3>
-                    <p className={styles.date}>{infoPost[0]?.date}</p>
-                </a>
-            </Link>
-            </div>
+            {infoPost[0]&&(
+                <Card post={infoPost[0]}/>
+            )}    
+            
             <div className={styles.grid}>
             {morePosts.map(post => (
                 <Link 
